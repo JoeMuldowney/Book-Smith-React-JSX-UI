@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import coverphoto from './images/cover.jpg';
+import './index.css';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="container">
+      
+        <img src={coverphoto} className="cover-image" alt=""/>
+        <div className="text-overlay">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+         Welcome to Virtual Library!
+         <h3>A place to buy, rent, and leave reviews on books!</h3>
+        </p>       
+      </div>
+      <div className="tool-bar">
+        <p>Login</p>
+      </div>
     </div>
   );
 }

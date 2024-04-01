@@ -1,13 +1,34 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.container {
+  position: relative;
+  display: inline-block; /* Ensures the container wraps around the image and text */
+  border: 25px blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Make the container fill the entire height of the viewport */
+  width: 100vw; /* Make the container fill the entire width of the viewport */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+}
+.tool-bar {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+}
+.cover-image {
+width: 100%;
+ 
 }
