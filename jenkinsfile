@@ -14,7 +14,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy Docker container
-                sh 'docker run -d -p 3000:3000 myapp'
+                sh 'docker run -d --restart always -p 3000:3000 myapp'
             }
         }
     }
