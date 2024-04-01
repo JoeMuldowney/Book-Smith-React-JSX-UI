@@ -11,7 +11,7 @@ COPY package*.json .
 RUN npm install
 
 # Copy the rest of the application files to the working directory
-COPY . /libraryfrontend
+COPY . .
 
 # Expose port 3000
 EXPOSE 3000
