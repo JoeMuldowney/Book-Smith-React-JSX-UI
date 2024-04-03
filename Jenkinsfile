@@ -11,11 +11,5 @@ pipeline {
                 sh 'docker build -t myfrontendapp .'
             }
         }
-        stage('Deploy') {
-            steps {
-                // Deploy Docker container
-               sh 'docker run -d -p 3000:3000 myfrontendapp'
-            }
-        }
     }
 }
