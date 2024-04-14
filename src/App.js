@@ -1,24 +1,26 @@
-import coverphoto from './images/cover.jpg';
-import './index.css';
-
-
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './components/homepage';
+import Login from './components/login';
+import NewMember from './components/createaccount';
 function App() {
-  return (
-    <div className="container">
-      
-        <img src={coverphoto} className="cover-image" alt=""/>
-        <div className="text-overlay">
-        <p>
-         Welcome to Virtual Library!
-         <h3>A place to buy, rent, and leave reviews on books!</h3>
-        </p>       
-      </div>
-      <div className="tool-bar">
-        <p>Login</p>
-      </div>
-    </div>
-  );
+
+  return ( 
+   
+     
+    <Router>
+    <Routes>
+      <Route index element={<HomePage/>}/>
+      <Route path="/home" Component={HomePage} />
+      <Route path="/login" Component={Login} />
+      <Route path="/newmember" Component={NewMember} />
+    </Routes>
+  </Router>
+
+
+   
+       
+   );
 }
 
 export default App;

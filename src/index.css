@@ -8,11 +8,19 @@
   height: 100vh; /* Make the container fill the entire height of the viewport */
   width: 100vw; /* Make the container fill the entire width of the viewport */
 }
-
+.text-overlay-login {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+}
 
 .text-overlay {
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
@@ -21,8 +29,9 @@
 }
 .tool-bar {
   position: absolute;
-  top: 15%;
+  top: 65%;
   left: 50%;
+  width: 45%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
   padding: 10px;
