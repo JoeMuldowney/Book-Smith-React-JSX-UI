@@ -29,15 +29,46 @@
 }
 .tool-bar {
   position: absolute;
-  top: 65%;
+  top: 50%;
   left: 50%;
-  width: 45%;
+  width: 20%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
   padding: 10px;
   font-size: 20px;
+
 }
 .cover-image {
 width: 100%;
  
+}
+.text-overlay-categories {
+  position: absolute;  
+  top: 55%;
+  left: 50%;
+  width: 35%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  width: 60%;
+  height: 40%;
+}
+.category{  
+  display: flex;
+}
+.book-category{
+  margin: 8%;
+}
+.menu{  
+  display: flex;
+}
+.menu-buttons{
+  margin: 8%;  
+}
+
+.menu-buttons button{
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  
 }

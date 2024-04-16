@@ -16,11 +16,19 @@ function HomePage() {
               
       </div>
       
-      <div className="tool-bar">     
+      <div className="tool-bar"> 
+      <div className='menu'>
+      <div className='menu-buttons'> 
       <button onClick={()=>{navigate("/login");}}>Login</button>
+      </div>
+      <div className='menu-buttons'> 
       <button onClick={()=>{navigate("/newmember");}}>Create Account</button>
-        <p>Browse as guest</p>
-        </div>
+      </div>
+      <div className='menu-buttons'> 
+      <button onClick={()=>{navigate("/newmember");}}>Browse as guest</button>
+      </div>
+      </div>
+      </div>
  
       </div> 
      

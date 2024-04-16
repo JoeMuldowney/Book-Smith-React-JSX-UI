@@ -1,14 +1,14 @@
 pipeline {
     agent any
-    
+    tools {nodejs "node"}   
     stages {
-        stage('Build') {
+        stage('deploy') {
             steps {
                 // Checkout source code
                 checkout scm
                 
                 // Build Docker image
-                sh 'docker build -t myapp .'
+                sh 'npm install'
             }
         }
     }
