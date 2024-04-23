@@ -1,13 +1,11 @@
 pipeline {
     agent any
-    tools {nodejs "node"}   
+     tools{
+        nodejs '20.12.1'
+    }
     stages {
         stage('deploy') {
             steps {
-                // Checkout source code
-                checkout scm
-                
-                // Build Docker image
                 sh 'npm install'
             }
         }
