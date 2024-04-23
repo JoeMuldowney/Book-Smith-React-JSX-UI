@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import coverphoto from '../images/cover.jpg';
 
+import Layout from './layout';
 function Store(){
 
     return(
-
-        <div className="container"> 
+        <Layout>    
+        <div className="container">        
+        <div className="text-overlay-login">     
       
-        <img src={coverphoto} className="cover-image" alt=""/>
-        <div className="text-overlay-login">
-       
-       <h2>Virtual Library Store</h2>
-       <legend>Browse Book Categories</legend>  
+       <legend>Virtual Library Book Categories</legend>  
     
         </div>
         <div className="text-overlay-categories">
@@ -42,8 +39,9 @@ function Store(){
             </div>
             </div>        
         </div>
+      
         </div>
-
+        </Layout>
     );
 }
 export default Store;

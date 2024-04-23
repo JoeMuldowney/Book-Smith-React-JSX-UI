@@ -4,6 +4,8 @@ import HomePage from './components/homepage';
 import Login from './components/login';
 import NewMember from './components/createaccount';
 import Store from './components/store';
+import Profile from './components/profile';
+
 function App() {
 
   return (      
@@ -14,6 +16,8 @@ function App() {
       <Route path="/login" Component={Login} />
       <Route path="/newmember" Component={NewMember} />
       <Route path="/store" Component={Store} />
+      <Route path="/profile" Component={Profile} />
+      
     </Routes>
   </Router>  
        

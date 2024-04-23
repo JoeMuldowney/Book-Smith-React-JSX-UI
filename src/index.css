@@ -72,3 +72,28 @@ width: 100%;
   background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
   
 }
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+.actions button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

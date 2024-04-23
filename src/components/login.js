@@ -3,21 +3,27 @@ import axios from 'axios';
 import coverphoto from '../images/cover.jpg';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Login() {
     const navigate = useNavigate();
-
     const[username,setFirstName] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [error, setError] = React.useState('')
+
   
     const handleSubmit = async (e) => {
       e.preventDefault();  
   
       try {
-        const response = await axios.post('http://localhost:5000/login', { username, password });
-        console.log(response.data); // using for testing
-        navigate('/store');
+       
+        const response = await axios.post(
+          'http://localhost:8000/users/memberlogin/',
+          { username, password}
+         
+        );
+      console.log(response.data); // using for testing
+      navigate('/store');
       } catch (error) {
         setError('Incorrect username or password');
       }
@@ -30,19 +36,20 @@ function Login() {
         <img src={coverphoto} className="cover-image" alt=""/>
         <div className="text-overlay-login">
        
-         <h2>Virtual Library Login</h2>
-         <legend>Enter Login Credentials</legend>        
+        
+        <legend>Virtual Library Login</legend>        
 
         <form onSubmit={handleSubmit}>    
         <label>Username:</label>
-        <input type="text" value={username} onChange={(e) => setFirstName(e.target.value)} />
+        <input type="text" placeholder='Enter username' value={username} onChange={(e) => setFirstName(e.target.value)} />
 
         <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="password" placeholder='Enter password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
         {error && <p>{error}</p>}
         <button type="submit">Login</button>
         <button onClick={()=>{navigate("/home");}}>cancel</button>
+        <p>Dont have an account? Create one<Link to="/newmember">Here</Link></p>
         
     </form>
     </div>

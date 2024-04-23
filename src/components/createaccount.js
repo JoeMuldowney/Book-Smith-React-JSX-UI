@@ -4,23 +4,30 @@ import '../index.css';
 import coverphoto from '../images/cover.jpg'
 import { useNavigate } from 'react-router-dom';
 
+
 function NewMember(){
     const navigate = useNavigate();
     const [firstname, setFirstName] = React.useState('')
     const [lastname, setLastName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [username, setUserName] = React.useState('')
-    const [password, setPassword] = React.useState('')
+    const [password1, setPassword1] = React.useState('')
+    const [password2, setPassword2] = React.useState('')
     const [error, setError] = React.useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (password1 !== password2) {
+            setError('Passwords do not match');
+            return;
+        }
 
         try{
-            const response = await axios.post('http://localhost:5000/newmember', { firstname, lastname, email, username, password });
+            const response = await axios.post('http://localhost:8000/users/membership/', { firstname, lastname, email, username, password1, password2 });
             console.log(response.data); // using for testing
+            navigate("/login")
         } catch (error) {
-            setError('Failed to make new account');
+            setError('Memebrship not created');
         }
     }
     return (
@@ -29,29 +36,28 @@ function NewMember(){
         <img src={coverphoto} className="cover-image" alt=""/>
         <div className="text-overlay-login">
        
-        <h2>Virtual Library Membership</h2>
-        <legend>Enter New Membership Information</legend>
+        
+        <legend>Virtual Library Membership</legend>
         
         <div className='memberformcontainer'>
         <form onSubmit={handleSubmit}>
-
-        <legend>Enter Account Information</legend>
-
+        
         <label>First Name:</label>
-        <input type="text" value={firstname} onChange={(e) => setFirstName(e.target.value)} />
+        <input type="text" placeholder='Enter First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required/>
 
         <label>Last Name:</label>
-        <input type="text" value={lastname} onChange={(e) => setLastName(e.target.value)} />
+        <input type="text" placeholder='Enter Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)} required/>
 
-        <label>Email (optional):</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label>Email:</label>
+        <input type="text" placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
 
         <label>Username:</label>
-        <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} />
+        <input type="text" placeholder='Create A User Name' value={username} onChange={(e) => setUserName(e.target.value)} required/>
 
         <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
+        <input type="password" placeholder='Create A Pasword' value={password1} onChange={(e) => setPassword1(e.target.value)} required/>
+        <label>Confirm Password:</label>
+        <input type="password" placeholder='Confirm Password' value={password2} onChange={(e) => setPassword2(e.target.value)} required/>
         {error && <p>{error}</p>}
         <button type="submit">Create</button>
         <button onClick={()=>{navigate("/home");}}>cancel</button>
