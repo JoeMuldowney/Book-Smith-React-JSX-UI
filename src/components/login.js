@@ -18,7 +18,7 @@ function Login() {
       try {
        
         const response = await axios.post(
-          'http://localhost:8000/users/memberlogin/',
+          'http://18.220.94.221:8000/users/memberlogin/',
           { username, password}
          
         );

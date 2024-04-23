@@ -23,7 +23,7 @@ function NewMember(){
         }
 
         try{
-            const response = await axios.post('http://localhost:8000/users/membership/', { firstname, lastname, email, username, password1, password2 });
+            const response = await axios.post('http://18.220.94.221:8000/users/membership/', { firstname, lastname, email, username, password1, password2 });
             console.log(response.data); // using for testing
             navigate("/login")
         } catch (error) {

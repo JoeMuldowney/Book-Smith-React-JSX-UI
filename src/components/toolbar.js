@@ -20,7 +20,7 @@ const Toolbar = () => {
     const handleLogout = async () => {
         try {
       // Make a POST request to logout endpoint
-                await axios.post('http://localhost:8000/users/memberlogout/');
+                await axios.post('http://18.220.94.221:8000/users/memberlogout/');
             // Handle successful logout, e.g., clear user session
             navigate("/home"); // Reload the page for simplicity
         } catch (error) {
