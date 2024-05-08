@@ -15,7 +15,7 @@ function Thrillers(){
     useEffect(() => {
         const fetchThrillerBooks = async () => {
           try{
-            const response = await axios.get('http://18.220.94.221:8000/books/thrillers/');
+            const response = await axios.get('http://18.220.48.41:8000/books/thrillers/');
             if (response.status !== 200) { // Check the status of the response
               throw new Error('Failed to fetch data');
             }
