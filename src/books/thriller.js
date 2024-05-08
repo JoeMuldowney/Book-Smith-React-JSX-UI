@@ -4,7 +4,7 @@ import coverphoto from '../images/thriller.jpg';
 import { Grid, Typography } from '@mui/material';
 
 
-
+// code for book genre dashboard
 function Thrillers(){
     const [error, setError] = useState('')
     const[books, setBooks] = useState([
