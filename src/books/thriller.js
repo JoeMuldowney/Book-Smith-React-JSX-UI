@@ -4,14 +4,14 @@ import coverphoto from '../images/thriller.jpg';
 import { Grid, Typography } from '@mui/material';
 
 
-// code for book genre dashboard
+// code for book genre dashboard 
 function Thrillers(){
     const [error, setError] = useState('')
     const[books, setBooks] = useState([
       {title:'', book_description:'',year:'', stock:'',buy_amount:'', rent_amount:'' }
     ]);
     
-
+//use effect
     useEffect(() => {
         const fetchThrillerBooks = async () => {
           try{
