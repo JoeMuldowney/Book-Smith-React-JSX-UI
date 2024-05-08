@@ -4,13 +4,7 @@ pipeline {
         nodejs '20.12.1'
     }
     stages {
-        stage('dockerbuild') {
-            steps {
-                sh 'docker build -t mynodeapp .'
-            }
-        }
-
-                stage('Remove old container') {
+        stage('Remove old container') {
             steps {
                 script {
                     // Using "|| true" to prevent pipeline failure if container doesn't exist
@@ -19,6 +13,13 @@ pipeline {
                 }
             }
         }
+    
+        stage('dockerbuild') {
+            steps {
+                sh 'docker build -t mynodeapp .'
+            }
+        }
+
         stage('Deploy'){
             steps{
                 sh 'docker save mynodeapp -o mynodeapp.tar'
