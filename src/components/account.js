@@ -21,7 +21,7 @@ function Account(){
     useEffect(() => {
       const fetchAccountData = async () => {
         try{        
-            const response = await axios.get('http://localhost:8000/users/viewaccount/');
+            const response = await axios.get('http://18.220.94.221:8000/users/viewaccount/');
             const profileData = response.data;
             setFirstName(profileData.first_name);
             setLastName(profileData.last_name);

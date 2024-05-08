@@ -21,7 +21,7 @@ function Profile(){
     useEffect(() => {
       const fetchProfileData = async () => {
         try{        
-            const response = await axios.get('http://localhost:8000/users/viewprofile/');
+            const response = await axios.get('http://18.220.94.221:8000/users/viewprofile/');
             const profileData = response.data;
             setProfileDesc(profileData.profileDesc);
             console.log(profileData.profileDesc)

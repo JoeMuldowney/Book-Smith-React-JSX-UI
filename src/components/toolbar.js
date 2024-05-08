@@ -13,7 +13,7 @@ const Toolbar = () => {
     useEffect(() => {
         const fetchLogStatus = async () => {
           try{
-            const response = await axios.get('http://localhost:8000/users/logstatus/');
+            const response = await axios.get('http://18.220.94.221:8000/users/logstatus/');
             
             setLoggedIn(response.data.is_authenticated);
             console.log(loggedin);

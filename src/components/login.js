@@ -17,7 +17,7 @@ function Login() {
       e.preventDefault();
        
     axios.post(
-          'http://localhost:8000/users/memberlogin/',{ username, password})
+          'http://18.220.94.221:8000/users/memberlogin/',{ username, password})
         .then(response => {
           navigate('/store');
         })       
