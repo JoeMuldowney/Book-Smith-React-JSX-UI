@@ -1,65 +1,100 @@
 .container {
   position: relative;
-  display: inline-block; /* Ensures the container wraps around the image and text */
-  border: 25px blue;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Make the container fill the entire height of the viewport */
-  width: 100vw; /* Make the container fill the entire width of the viewport */
+  height: 95vh;   
 }
-.text-overlay-login {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
-  padding: 10px;
-  font-size: 20px;
+.container-tool-bar {
+  position:absolute;
+  display: flex;   
+  margin-left: 90%;
+  z-index: 1;  
 }
-
+.container-sidebar{
+  z-index: 1;
+  position:absolute;
+}
 .text-overlay {
   position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 15%;  
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.text-overlay-searchbar {
+  position: absolute;
+  top: 30%;  
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+.text-overlay-login {   
+  position: absolute;
+  height: 40%;
   background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
   padding: 10px;
   font-size: 20px;
+  text-align: center; /* Align text horizontally */
 }
+.text-overlay-membership {   
+  position: absolute;
+  height: 60%;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: center; /* Align text horizontally */
+}
+.text-overlay-profile {   
+  position: absolute;
+  height: 60%;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: center; /* Align text horizontally */
+}
+.text-overlay-store {
+  position: absolute;
+  top: 5%;  
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 10px;  
+}
+
 .tool-bar {
   position: absolute;
   top: 50%;
-  left: 50%;
-  width: 20%;
-  transform: translate(-50%, -50%);
+  width: 20%; 
   background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
-  padding: 10px;
-  font-size: 20px;
-
+  padding: 10px;  
+  display: flex;
+}
+.tool-bar button{
+    height:4em;
 }
 .cover-image {
 width: 100%;
- 
+height: 100%; 
 }
 .text-overlay-categories {
   position: absolute;  
-  top: 55%;
-  left: 50%;
-  width: 35%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
-  padding: 10px;
-  font-size: 20px;
-  width: 60%;
-  height: 40%;
+  top: 45%;  
+  background-color: rgba(255, 255, 255, 0.5); 
+  width: 75%;
+  height: 30%;
+  display: flex;  
 }
-.category{  
-  display: flex;
+.text-overlay-horror {
+  position: absolute;
+  top: 25%; 
+  width: 85%; 
+  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+  padding: 5px;  
+  text-align: center;
 }
-.book-category{
-  margin: 8%;
-}
+
 .menu{  
   display: flex;
 }
@@ -72,28 +107,100 @@ width: 100%;
   background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
   
 }
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
-}
 
 .logo {
-  font-size: 20px;
+  font-size: 20px;  
 }
-
-.actions button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  border: none;
-  background-color: transparent;
-  color: #fff;
+legend {
+ 
+  font-size: 35px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 5%;
+  margin-bottom: 15%;
+}
+label {
+  font-size: 25px;
+  font-weight: bold;
+  color: #333;
+  line-height: 2em;  
+}
+input[type="text"] {
+  height: 2em;
+  width: 15em;
+  font-size: 1em;
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  
+}
+input[type="password"] {
+  height: 2em;
+  width: 15em;
+  font-size: 1em;
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
 }
+.spacing{
+  margin-bottom: 1%;
+}
 
-.actions button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.buttons{
+  margin: 5%;
+}
+button {
+  /* Adjust the following properties to customize the button */
+  width: 150px; /* Button width */
+  height: 40px; /* Button height */
+  padding: 10px 20px; /* Padding inside the button */
+  border-radius: 1px black; /* Remove button border */
+  background-color: rgba(255, 255, 255, 0.2); /* Button background color */
+  color:black; /* Button text color */
+  font-size: 16px; /* Button text font size */
+  font-weight: bold; /* Button text font weight */
+  border-radius: 5px; /* Button border radius for rounded corners */
+  cursor: pointer; /* Cursor style on hover */
+  margin: 1%;
+}
+button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+}
+.sidebar {
+  position: absolute;
+  
+  background-color: rgba(255, 255, 255, 0.4);
+  color: black;
+  padding: 20px;
+}
+/* Styles for category headings and list items */
+
+.category {
+  margin-bottom: 20px;
+}
+
+.category h2 {
+  margin-bottom: 10px;
+}
+
+.category ul {
+  list-style-type: none;
+  
+  padding: 0;
+}
+
+.category ul li {
+  margin-bottom: 10px;
+}
+
+.category ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.category ul li a:hover {
+  text-decoration: underline;
+}
+.disabled {
+  color: #0f0e0e; /* Grey text color */
+  pointer-events: none; /* Disable pointer events */
+  /* Add other styles to make the buttons appear disabled */
 }

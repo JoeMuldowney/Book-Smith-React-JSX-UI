@@ -8,29 +8,26 @@ function HomePage() {
  
     <div className="container"> 
       
-        <img src={coverphoto} className="cover-image" alt=""/>
-        <div className="text-overlay">
+    <img src={coverphoto} className="cover-image" alt=""/>
+    <div className="text-overlay">
         
-         Welcome to Virtual Library!
-         <h3>A place to buy, rent, and leave reviews on books!</h3>
+    <legend>Welcome to Virtual Library!</legend>
+    <h3>A place to buy, rent, and leave reviews on books!</h3>
               
       </div>
       
       <div className="tool-bar"> 
-      <div className='menu'>
-      <div className='menu-buttons'> 
-      <button onClick={()=>{navigate("/login");}}>Login</button>
-      </div>
-      <div className='menu-buttons'> 
-      <button onClick={()=>{navigate("/newmember");}}>Create Account</button>
-      </div>
-      <div className='menu-buttons'> 
-      <button onClick={()=>{navigate("/newmember");}}>Browse as guest</button>
-      </div>
+
+      <button onClick={()=>{navigate("/login");}}>Login</button>      
+      
+      <button onClick={()=>{navigate("/newmember");}}>Create Account</button>      
+      
+      <button onClick={()=>{navigate("/store");}}>Browse as guest</button>
+     
       </div>
       </div>
  
-      </div> 
+  
      
     
   );  

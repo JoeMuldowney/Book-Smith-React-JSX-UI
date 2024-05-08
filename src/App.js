@@ -5,7 +5,9 @@ import Login from './components/login';
 import NewMember from './components/createaccount';
 import Store from './components/store';
 import Profile from './components/profile';
-
+import Sidebar from './components/sidebar'; // Import the Sidebar component
+import Account from './components/account';
+import Thrillers from './books/thriller';
 function App() {
 
   return (      
@@ -17,6 +19,10 @@ function App() {
       <Route path="/newmember" Component={NewMember} />
       <Route path="/store" Component={Store} />
       <Route path="/profile" Component={Profile} />
+      <Route path="/sidebar" Component={Sidebar} />
+      <Route path="/account" Component={Account} />
+      <Route path="/thriller" Component={Thrillers} />
+    
       
     </Routes>
   </Router>  

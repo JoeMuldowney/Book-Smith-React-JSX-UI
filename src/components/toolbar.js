@@ -1,44 +1,91 @@
 import React from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-const Toolbar = () => {
+import {GoPerson, GoBell } from "react-icons/go";
+const Toolbar = () => { 
     
+    axios.defaults.withCredentials = true;    
     const navigate = useNavigate()
 
-    const handleProfile = async () => {
-        try {      
-            await axios.get('http://localhost:8000/users/memberprofile/');            
-            navigate("/profile"); // Reload the page for simplicity
-        } catch (error) {
-            // Handle error
-            console.error('Get profile failed:', error);
-            // Display error message or take appropriate action
-        }    
-    };
-
-
-    const handleLogout = async () => {
-        try {
-      // Make a POST request to logout endpoint
-                await axios.post('http://18.220.94.221:8000/users/memberlogout/');
-            // Handle successful logout, e.g., clear user session
-            navigate("/home"); // Reload the page for simplicity
-        } catch (error) {
-            // Handle error
-            console.error('Logout failed:', error);
-            // Display error message or take appropriate action
+    const [loggedin, setLoggedIn] = useState() 
+    const [error, setError] = React.useState('')
+    useEffect(() => {
+        const fetchLogStatus = async () => {
+          try{
+            const response = await axios.get('http://localhost:8000/users/logstatus/');
+            
+            setLoggedIn(response.data.is_authenticated);
+            console.log(loggedin);
+        } catch (error){
+            console.error('Error fetching profile data:', error);
+            setError('Error fetching profile data');
+          }
         }
-      // Helper function to get CSRF token from cookies
+        fetchLogStatus();
+      }, []);
+    
 
+    const [isOpen, setIsOpen] = useState(false);
+    function toggle() {
+        setIsOpen(prevIsOpen => !prevIsOpen);
+      }
+
+
+    
+    const handleProfileClick = () => {
+        // Navigate to a different page
+        navigate('/profile');
     };
+    const handleAccountClick = () => {
+        // Navigate to a different page
+        navigate('/account');
+    };
+
+
+    const handleLogout = () => {
+        axios.post('http://localhost:8000/users/memberlogout/')
+            .then(response => {
+                console.log('logged out') 
+            })
+            .catch(error => {
+                // Check if the error contains response data
+                if (error.response && error.response.status === 400) {
+                    navigate('/login')
+                    console.error('Not logged in:', error.response.data);
+                } else {
+                   
+                    console.error('Logout failed:', error);
+                }
+            });
+    };  
     return (
-        <div className="toolbar">
-            <div className="logo">Your Logo</div>
-            <div className="actions">
-                <button onClick={handleLogout}>Logout</button>
-                <button onClick={handleProfile}>Account Profile</button>
-            </div>
+        
+        <div className='container-tool-bar'>      
+        <div className={`text-overlay-toolbar ${isOpen ? 'open' : ''}`}>
+            <button onClick={toggle}>{isOpen ?<GoPerson /> : <GoPerson />}</button>
+            {isOpen && (
+                <>
+                    <div className="category">
+                       
+                        <ul>
+                        <li><a href="#" onClick={handleProfileClick} className={!loggedin ? 'disabled' : ''}>Profile</a></li>
+                            <li><a href="#" onClick={handleAccountClick}className={!loggedin ? 'disabled' : ''}>Account</a></li>
+                            <li><a href="#" className={!loggedin ? 'disabled' : ''}>Billing and payments</a></li>
+                            <li><a href="#" onClick={handleLogout}>{loggedin ? 'Logout' :'Login'}</a></li>
+                        </ul>
+                    </div>
+
+                </>
+            )}
         </div>
+        </div>
+           
+            
+      
+       
+      
+       
     );
 };
 

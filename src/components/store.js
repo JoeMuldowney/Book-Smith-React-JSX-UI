@@ -1,47 +1,64 @@
 import React, { useState } from 'react';
-
+import coverphoto from '../images/cover.jpg';
 import Layout from './layout';
+import { useNavigate } from 'react-router-dom';
 function Store(){
 
+    const navigate = useNavigate()
+
+    const thrillerClick = () => {
+        navigate('/thriller')
+    }
+
     return(
-        <Layout>    
-        <div className="container">        
-        <div className="text-overlay-login">     
-      
-       <legend>Virtual Library Book Categories</legend>  
-    
-        </div>
+        <Layout>
+        <div className="container">
+       
+        <img src={coverphoto} className="cover-image" alt=""/>        
+        <div className="text-overlay-store">
+       <legend>Virtual Library Book Catalog</legend>  
+         </div>
+
+         <div className="text-overlay-searchbar">
+        <input type='text' placeholder='Search...'></input>
+        <button type='submit'>Search</button>
+         </div>
+
         <div className="text-overlay-categories">
-            <div className="category">
-            <div className="book-category">
-            <legend>Horror</legend>
-            <button>browse</button>
+             <div>         
+            <label>Horror</label>
+            <button>Browse</button>  
+            </div>                   
+           <div>
+            <label>Sci-Fi</label> 
+            <button>Browse</button>                    
             </div>
-            <div className="book-category">
-            <legend>Sci-Fi</legend>
+            <div>
+            <label>Mystery</label> 
+            <button>Browse</button>           
+             </div> 
+             <div>       
+            <label>Thriller</label>
+            <button onClick={thrillerClick}>Browse</button>                        
             </div>
-            <div className="book-category">
-            <legend>Mystery</legend>
+            <div>
+            <label>Fantasy</label> 
+            <button>Browse</button>                      
             </div>
-            <div className="book-category">
-            <legend>Thriller</legend>
+            <div>
+            <label>Romance</label>
+            <button>Browse</button>          
             </div>
-            </div>
-            <div className="category">
-            <div className="book-category">
-            <legend>Fantasy</legend>
-            </div>
-            <div className="book-category">
-            <legend>Romance</legend>
-            </div>
-            <div className="book-category">
-            <legend>Non Fiction</legend>
-            </div>
-            </div>        
-        </div>
+            <div>
+            <label>Non Fiction</label>
+            <button>Browse</button>
+            </div>                           
+        </div>       
+
       
         </div>
         </Layout>
+       
     );
 }
 export default Store;

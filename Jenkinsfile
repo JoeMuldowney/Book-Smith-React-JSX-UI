@@ -9,6 +9,16 @@ pipeline {
                 sh 'docker build -t mynodeapp .'
             }
         }
+
+                stage('Remove old container') {
+            steps {
+                script {
+                    // Using "|| true" to prevent pipeline failure if container doesn't exist
+                    sh 'docker stop mynodeapp || true'
+                    sh 'docker rm mynodeapp || true'
+                }
+            }
+        }
         stage('Deploy'){
             steps{
                 sh 'docker save mynodeapp -o mynodeapp.tar'
