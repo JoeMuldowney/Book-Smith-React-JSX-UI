@@ -28,19 +28,17 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')])
            {
                     sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
-
-                    // Tag Docker image
-                    sh 'docker tag react-session joemuldowney/virtual_library_react'
+                 
 
                     // Push Docker image to Docker Hub
-                    sh 'docker push joemuldowney/virtual_library_react'
+                    sh 'docker push virtual-library-frontend:latest joemuldowney/virtual_library_react'
            }
             }
         }
 
         stage('Deploy'){
             steps{
-                sh 'docker run -d -p 3000:3000 --name react-session joemuldowney/virtual_library_react'
+                sh 'docker run -d -p 3000:3000 --name virtual-library-frontend joemuldowney/virtual_library_react'
             }
         }
     }
