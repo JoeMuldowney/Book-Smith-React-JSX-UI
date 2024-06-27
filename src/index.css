@@ -5,6 +5,13 @@
   align-items: center;
   height: 95vh;   
 }
+.container-book-view {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 95vh;  
+}
 .container-tool-bar {
   position:absolute;
   display: flex;   
@@ -13,21 +20,20 @@
 }
 .container-sidebar{
   z-index: 1;
-  position:absolute;
+  position:absolute;   
 }
 .text-overlay {
   position: absolute;
   top: 15%;  
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
   padding: 5px;
   font-size: 20px;
   text-align: center;
 }
-
 .text-overlay-searchbar {
   position: absolute;
   top: 30%;  
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
   padding: 5px;
   font-size: 20px;
   text-align: center;
@@ -35,23 +41,107 @@
 .text-overlay-login {   
   position: absolute;
   height: 40%;
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
   padding: 10px;
   font-size: 20px;
   text-align: center; /* Align text horizontally */
 }
 .text-overlay-membership {   
   position: absolute;
-  height: 60%;
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  height: 80%;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
   padding: 10px;
   font-size: 20px;
   text-align: center; /* Align text horizontally */
 }
+
+.text-overlay-bookview {   
+  position: absolute;
+  height: 75%;
+  width: 35%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: left; /* Align text horizontally */
+  margin-left: 200px;
+}
+.text-overlay-bookview-precart{
+  position: absolute;
+  height: 75%;
+  width: 35%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: left; /* Align text horizontally */
+  margin-left: 950px;
+}
+.text-overlay-shipping-view {   
+  position: absolute;
+  height: 75%;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: left; /* Align text horizontally */
+  margin-left: 200px;
+ 
+}
+.text-overlay-shipping-default{
+  position: absolute;
+  height: 75%;
+  width: 35%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: left; /* Align text horizontally */
+  margin-left: 1050px;  
+
+}
+.text-overlay-checkout {   
+  position: absolute;
+  height: 75%;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: left; /* Align text horizontally */
+  margin-left: 200px;
+}
+.text-overlay-bookview-checkout{
+  position: absolute;
+  height: 75%;
+  width: 35%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: left; /* Align text horizontally */
+  margin-left: 1000px;  
+
+}
 .text-overlay-profile {   
   position: absolute;
-  height: 60%;
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  height: 80%;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: center; /* Align text horizontally */
+}
+.text-overlay-saved-books {   
+  position: absolute;
+  height: 80%;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px;
+  font-size: 20px;
+  text-align: center; /* Align text horizontally */
+}
+.text-overlay-card {   
+  position: absolute;
+  height: 80%;
+  width:60%;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
   padding: 10px;
   font-size: 20px;
   text-align: center; /* Align text horizontally */
@@ -59,15 +149,17 @@
 .text-overlay-store {
   position: absolute;
   top: 5%;  
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
-  padding: 10px;  
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  padding: 10px; 
+  text-align: center;
+  align-items: center;
+   
 }
-
 .tool-bar {
   position: absolute;
   top: 50%;
   width: 20%; 
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
   padding: 10px;  
   display: flex;
 }
@@ -80,45 +172,42 @@ height: 100%;
 }
 .text-overlay-categories {
   position: absolute;  
-  top: 45%;  
-  background-color: rgba(255, 255, 255, 0.5); 
-  width: 75%;
-  height: 30%;
+  top: 65%;  
+  background-color: rgba(255, 255, 255, 0.7); 
+  width: 45%;
+  height: 15%;
   display: flex;  
+  text-align: center;
+  align-items: center;
 }
-.text-overlay-horror {
+.text-overlay-thriller {
   position: absolute;
   top: 25%; 
-  width: 85%; 
-  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+  width: 65%; 
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
   padding: 5px;  
   text-align: center;
 }
-
 .menu{  
   display: flex;
+  margin-left: -80%;
 }
 .menu-buttons{
   margin: 8%;  
 }
-
 .menu-buttons button{
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.3); 
   
 }
-
+.text-overlay-horror button{ 
+  background-color: rgba(255, 255, 255, 0.7); 
+  width: 50px;
+  height: 2em;  
+}
 .logo {
-  font-size: 20px;  
-}
-legend {
- 
-  font-size: 35px;
-  font-weight: bold;
-  color: #333;
-  margin-top: 5%;
-  margin-bottom: 15%;
-}
+  font-size: 20px;  }
+
 label {
   font-size: 25px;
   font-weight: bold;
@@ -130,8 +219,7 @@ input[type="text"] {
   width: 15em;
   font-size: 1em;
   background-color: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  
+  cursor: pointer;  
 }
 input[type="password"] {
   height: 2em;
@@ -143,7 +231,6 @@ input[type="password"] {
 .spacing{
   margin-bottom: 1%;
 }
-
 .buttons{
   margin: 5%;
 }
@@ -165,37 +252,29 @@ button:hover {
   background-color: #0056b3; /* Change background color on hover */
 }
 .sidebar {
-  position: absolute;
-  
+  position: absolute;  
   background-color: rgba(255, 255, 255, 0.4);
   color: black;
   padding: 20px;
 }
 /* Styles for category headings and list items */
-
 .category {
   margin-bottom: 20px;
 }
-
 .category h2 {
   margin-bottom: 10px;
 }
-
 .category ul {
-  list-style-type: none;
-  
+  list-style-type: none;  
   padding: 0;
 }
-
 .category ul li {
   margin-bottom: 10px;
 }
-
 .category ul li a {
   color: #fff;
   text-decoration: none;
 }
-
 .category ul li a:hover {
   text-decoration: underline;
 }
@@ -203,4 +282,59 @@ button:hover {
   color: #0f0e0e; /* Grey text color */
   pointer-events: none; /* Disable pointer events */
   /* Add other styles to make the buttons appear disabled */
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  
+  margin: 5%;
+  margin-top: 0%;
+}
+.form-group-store{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  display: inline-block;
+  margin: 5%;
+  margin-top: 0%;
+}
+.form-group-profile {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width:90%;
+  margin: 5%;
+  margin-top: 0%;
+}
+.form-page {
+  display: flex;  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.form-group-about-me {  
+  text-align: center;
+  margin: 5%;
+  margin-top: 0%;
+}
+.form-group-about-me textarea{
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+  padding: 5px;
+  font-size: 20px;
+  width: 80%;
+}
+.form-group-account {
+  display: flex;
+  flex-direction: column;
+  text-align: left;  
+  margin: 15%;
+  margin-top: 0%;
+}
+.form-group-account-date {
+  display: flex;
+  flex-direction: column;
+  text-align: center;  
+  margin: 5%;
+  margin-top: 0%;
 }

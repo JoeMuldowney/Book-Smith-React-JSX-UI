@@ -1,13 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './components/homepage';
-import Login from './components/login';
-import NewMember from './components/createaccount';
-import Store from './components/store';
-import Profile from './components/profile';
-import Sidebar from './components/sidebar'; // Import the Sidebar component
-import Account from './components/account';
-import Thrillers from './books/thriller';
+import HomePage from './userinfo/homepage';
+import Login from './userinfo/login';
+import NewMember from './userinfo/createaccount';
+import Store from './userinfo/store';
+import Profile from './userinfo/profile';
+import Sidebar from './userinfo/sidebar'; // Import the Sidebar component
+import Account from './userinfo/account';
+import Views from './books/bookcategories';
+import BookDetail from './books/bookdetails';
+import SavedBook from './books/savedbooks';
+import CheckOut from './checkout/checkoutscreen';
+import Billing from './billing/billinginfo';
+import Shipping from './shipping/shipping';
+import AddAddress from './shipping/addaddress';
+import AddBilling from './billing/addbilling'
+import BuyHistory from './books/purchasehistory';
+
 function App() {
 
   return (      
@@ -21,7 +30,15 @@ function App() {
       <Route path="/profile" Component={Profile} />
       <Route path="/sidebar" Component={Sidebar} />
       <Route path="/account" Component={Account} />
-      <Route path="/thriller" Component={Thrillers} />
+      <Route path="/views/:genre" Component={Views} />
+      <Route path="/details/:id" Component={BookDetail} />
+      <Route path="/savedbooks" Component={SavedBook} />
+      <Route path="/boughtbooks" Component={BuyHistory} />
+      <Route path="/checkout" Component={CheckOut} />
+      <Route path="/billing" Component={Billing} />
+      <Route path="/shipping" Component={Shipping} />
+      <Route path="/address" Component={AddAddress} />
+      <Route path="/card" Component={AddBilling}/>
     
       
     </Routes>

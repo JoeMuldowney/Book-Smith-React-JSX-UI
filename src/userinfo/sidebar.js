@@ -1,20 +1,25 @@
 import React from 'react';
 import '../index.css';
 import { useState } from 'react';
-import { GoBook } from "react-icons/go";
+import { GoMail  } from "react-icons/go";
+import {useNavigate } from 'react-router-dom';
 const Sidebar = () => {
-
+    const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
 
     function toggle() {
         setIsOpen(prevIsOpen => !prevIsOpen);
-      }
-
-
+    }
+    const savedBooksClick = () => {
+        navigate('/savedbooks')
+    }
+    const boughtBooksClick = () => {
+        navigate('/boughtbooks')
+    }
       return (
         <div className='container-sidebar'>
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-            <button onClick={toggle}>{isOpen ? <GoBook /> : <GoBook />}</button>
+            <button onClick={toggle}>{isOpen ? <GoMail /> : <GoMail />}</button>
             {isOpen && (
                 <>
                     <div className="category">
@@ -27,11 +32,10 @@ const Sidebar = () => {
                     </div> 
 
                     <div className="category">
-                        <h2>Purchases</h2>
-                        <ul>
-                            <li><a href="#">Rentals</a></li>
-                            <li><a href="#">Bought</a></li>
-                            <li><a href="#">Saved Books</a></li>
+                        <h2>Books</h2>
+                        <ul>                            
+                            <li><a href="#" onClick={boughtBooksClick}>Purchases</a></li>
+                            <li><a href="#" onClick={savedBooksClick}>Saved</a></li>
                         </ul>
                     </div>
                 </>

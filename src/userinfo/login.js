@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
-import coverphoto from '../images/cover.jpg';
+import coverphoto from '../images/library.jpeg';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -17,8 +17,9 @@ function Login() {
       e.preventDefault();
        
     axios.post(
-          'http://18.220.48.41:8000/users/memberlogin/',{ username, password})
+          'http://localhost:8000/users/memberlogin/',{ username, password})
         .then(response => {
+ 
           navigate('/store');
         })       
       .catch(error => {

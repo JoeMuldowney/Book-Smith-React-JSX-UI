@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import coverphoto from '../images/cover.jpg';
+import React from 'react';
+import coverphoto from '../images/library.jpeg';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() { 
@@ -14,21 +14,18 @@ function HomePage() {
     <legend>Welcome to Virtual Library!</legend>
     <h3>A place to buy, rent, and leave reviews on books!</h3>
               
-      </div>
+    </div>
       
-      <div className="tool-bar"> 
+    <div className="tool-bar"> 
 
-      <button onClick={()=>{navigate("/login");}}>Login</button>      
+    <button onClick={()=>{navigate("/login");}}>Login</button>      
       
-      <button onClick={()=>{navigate("/newmember");}}>Create Account</button>      
+    <button onClick={()=>{navigate("/newmember");}}>Create Account</button>      
       
-      <button onClick={()=>{navigate("/store");}}>Browse as guest</button>
+    <button onClick={()=>{navigate("/store");}}>Browse as guest</button>
      
-      </div>
-      </div>
- 
-  
-     
+    </div>
+    </div>     
     
   );  
 }
