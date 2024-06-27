@@ -11,8 +11,8 @@ pipeline {
             steps {
                 script {
                     // Using "|| true" to prevent pipeline failure if container doesn't exist
-                    sh 'docker stop mynodeapp || true'
-                    sh 'docker rm mynodeapp || true'
+                    sh 'docker stop vlibraryfrontend || true'
+                    sh 'docker rm vlibraryfrontend || true'
                 }
             }
         }
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Deploy'){
             steps{
-                sh 'docker run -d -p 3000:3000 --name react-session joemuldowney/virtual_library_react'
+                sh 'docker run -d -p 3000:3000 --name vlibraryfrontend joemuldowney/virtual_library_react'
             }
         }
     }
