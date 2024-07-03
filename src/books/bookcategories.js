@@ -34,7 +34,7 @@ function Views(){
 
     const fetchBooks = async () => {
         try{
-          const response = await axios.get(`http://localhost:8000/books/category/${genre}/?page=${currentPage}`);
+          const response = await axios.get(`http://18.220.48.41:8000/books/category/${genre}/?page=${currentPage}`);
           if (response.status !== 200) { // Check the status of the response
             throw new Error('Failed to fetch data');
           }

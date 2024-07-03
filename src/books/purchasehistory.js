@@ -24,7 +24,7 @@ useEffect(() => {
   const fetchBook = async () => {
     try {
       // Fetch book data based on the bookId
-      const response = await axios.get('http://localhost:8000/users/boughthistory/');
+      const response = await axios.get('http://18.220.48.41:8000/users/boughthistory/');
         // Process the book descriptions before setting the state
         const processedBooks = response.data.books.map(book => ({
           ...book         

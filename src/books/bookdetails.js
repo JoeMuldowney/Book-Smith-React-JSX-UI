@@ -28,7 +28,7 @@ const BookDetail = () => {
     const fetchBook = async () => {
       try {
         // Fetch book data based on the bookId
-        const response = await axios.get(`http://localhost:8000/books/view/`+id, {withCredentials: true });
+        const response = await axios.get(`http://18.220.48.41:8000/books/view/`+id, {withCredentials: true });
         if (response.status !== 200) { // Check the status of the response
             throw new Error('Failed to fetch data');
           }        

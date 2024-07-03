@@ -15,7 +15,7 @@ const CartToggleButton = (props) => {
   useEffect(() => {
     const checkAddedStatus = () => {
       axios.get(
-        `http://localhost:8080/data/${id}`)
+        `http://18.116.29.111:8020/data/${id}`)
         .then(response => {
           console.log(response.data)
           if (!response.data) {
@@ -34,7 +34,7 @@ const CartToggleButton = (props) => {
 
   const addBook = () => {
     axios.post(
-      'http://localhost:8080/cart',{      
+      'http://18.116.29.111:8020/cart',{      
         "book_id": bookId,
         "title": buyBook.title,
         "quantity": amount,
@@ -53,7 +53,7 @@ const CartToggleButton = (props) => {
   
   const deleteBook = () => {   
     axios.delete(
-      `http://localhost:8080/delete/${id}`)
+      `http://18.116.29.111:8020/delete/${id}`)
      .then(response => {       
         // Update state to reflect that the book is saved
         setIsAdded(false);

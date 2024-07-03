@@ -15,7 +15,7 @@ const BookUpdate = (props) => {
 
   const updateBookCart = () => {
     axios.post(
-      `http://localhost:8080/cartupdate/${id}`,{     
+      `http://18.116.29.111:8020/cartupdate/${id}`,{     
         "quantity": stockAmount,
         "format": buyBook.format,
         "purchase": buyBook.purchaseType,

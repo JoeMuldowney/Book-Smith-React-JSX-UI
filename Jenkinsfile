@@ -13,6 +13,7 @@ pipeline {
                     // Using "|| true" to prevent pipeline failure if container doesn't exist
                     sh 'docker stop vlibraryfrontend || true'
                     sh 'docker rm vlibraryfrontend || true'
+                    sh 'docker system prune -af'
                 }
             }
         }

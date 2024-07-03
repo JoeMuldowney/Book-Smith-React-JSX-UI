@@ -18,7 +18,7 @@ const AddAddress = () => {
   const addAddress = (event) => {
     event.preventDefault();
     axios.post(
-      'http://localhost:8080/address',{      
+      'http://18.116.29.111:8020/address',{      
         "first_name": firstName,
         "last_name": lastName,
         "street": street,

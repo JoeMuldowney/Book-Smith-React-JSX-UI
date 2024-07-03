@@ -10,7 +10,7 @@ const ToggleButton = () => {
   useEffect(() => {
   const checkSavedStatus = () => {
     axios.get(
-      `http://localhost:8000/users/bookstatus/${id}`)
+      `http://18.220.48.41:8000/users/bookstatus/${id}`)
       .then(response => {
         if (response.status === 201) {
           // Status 200 indicates that the book is saved          
@@ -30,7 +30,7 @@ const ToggleButton = () => {
 
   const saveBook = () => {
     axios.post(
-      `http://localhost:8000/users/savebook/${id}`)
+      `http://18.220.48.41:8000/users/savebook/${id}`)
       .then(response => {
         console.log(response.data);
         // Update state to reflect that the book is saved
@@ -43,7 +43,7 @@ const ToggleButton = () => {
 
   const deleteBook = () => {   
     axios.delete(
-      `http://localhost:8000/users/deletebook/${id}`)
+      `http://18.220.48.41:8000/users/deletebook/${id}`)
       .then(response => {
         console.log(response.data);
         // Update state to reflect that the book is saved

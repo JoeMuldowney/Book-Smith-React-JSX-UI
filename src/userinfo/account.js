@@ -22,7 +22,7 @@ function Account(){
     useEffect(() => {
       const fetchAccountData = async () => {
         try{        
-            const response = await axios.get('http://localhost:8000/users/viewaccount/');
+            const response = await axios.get('http://18.220.48.41:8000/users/viewaccount/');
             const profileData = response.data;
             setFirstName(profileData.first_name);
             setLastName(profileData.last_name);
@@ -40,7 +40,7 @@ function Account(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();        
-      const response = await axios.patch('http://localhost:8000/users/emailpatch/',
+      const response = await axios.patch('http://18.220.48.41:8000/users/emailpatch/',
             {email}           
         ).then(response => {
           console.log("Email Updated")
