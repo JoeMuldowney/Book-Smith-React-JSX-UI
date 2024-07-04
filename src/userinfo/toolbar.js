@@ -82,6 +82,9 @@ const Toolbar = () => {
                     console.error('Logout failed:', error);
                 }
             });
+    };
+    const handleLoginClick = () => {
+        navigate('/login');
     };  
     return (
         
@@ -100,7 +103,10 @@ const Toolbar = () => {
                             <li><a href="#" onClick={handleAccountClick}className={!loggedin ? 'disabled' : ''}>Account</a></li>
                             <li><a href="#" onClick={billingClick}className={!loggedin ? 'disabled' : ''}>Billing</a></li>
                             <li><a href="#" onClick={shippingClick}className={!loggedin ? 'disabled' : ''}>Shipping</a></li>
-                            <li><a href="#" onClick={handleLogout}>{loggedin ? 'Logout' :'Login'}</a></li>
+                            <li> <a href="#" onClick={loggedin ? handleLogout : handleLoginClick}> 
+                            {loggedin ? 'Logout' : 'Login'}
+                            </a>
+                            </li>
                         </ul>
                     </div>
                 </>    
