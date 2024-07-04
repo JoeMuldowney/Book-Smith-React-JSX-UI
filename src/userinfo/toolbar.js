@@ -14,7 +14,7 @@ const Toolbar = () => {
     useEffect(() => {
         const fetchLogStatus = async () => {
         
-        axios.get('http://localhost:8000/users/logstatus/')
+        axios.get('http://18.220.48.41:8000/users/logstatus/')
         .then(response => {
             if (response.status === 201) {          
                 setLoggedIn(true);
@@ -67,7 +67,7 @@ const Toolbar = () => {
 
 
     const handleLogout = () => {
-        axios.post('http://localhost:8000/users/memberlogout/')
+        axios.post('http://18.220.48.41:8000/users/memberlogout/')
             .then(response => {
                 console.log('logged out') 
                 setLoggedIn(false);
