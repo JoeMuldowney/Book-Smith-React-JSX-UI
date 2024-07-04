@@ -16,7 +16,7 @@ const Toolbar = () => {
         
         axios.get('http://18.220.48.41:8000/users/logstatus/')
         .then(response => {
-            if (response.status === 201) {          
+            if (response.status === 200) {          
                 setLoggedIn(true);
               }else {
                 // Status code other than 200, assume the book is not saved
