@@ -31,7 +31,7 @@ function NewMember(){
     const handleSubmit = async (e) => {
         e.preventDefault();       
         try{
-            const response = await axios.post('http://18.220.48.41:8000/users/membership/', { firstname, lastname, email, username, password1, password2 });
+            const response = await axios.post('http://localhost:8000/users/membership/', { firstname, lastname, email, username, password1, password2 });
             const res = await axios.post('http://18.116.29.111:8020/card',{      
                   "first_name": payFirstName,
                   "last_name": payLastName,

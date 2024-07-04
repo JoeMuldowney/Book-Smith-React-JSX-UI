@@ -67,7 +67,7 @@ const Toolbar = () => {
 
 
     const handleLogout = () => {
-        axios.post('http://18.220.48.41:8000/users/memberlogout/')
+        axios.post('http://localhost:8000/users/memberlogout/')
             .then(response => {
                 console.log('logged out') 
                 setLoggedIn(false);
