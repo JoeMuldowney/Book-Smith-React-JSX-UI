@@ -32,7 +32,7 @@ const CheckOut = () => {
 
     const getAddress = async () => {
       try {          
-          const response = await axios.get('http://18.116.29.111:8020/shipping', { withCredentials: true });                 
+          const response = await axios.get('http://18.218.222.138:8020/shipping', { withCredentials: true });                 
           setAddress(response.data)         
           setLoading(false)
         } catch (error){
@@ -44,7 +44,7 @@ const CheckOut = () => {
 
   const getBilling = async () => {
     try {          
-        const response = await axios.get('http://18.116.29.111:8020/billing', { withCredentials: true });                 
+        const response = await axios.get('http://18.218.222.138:8020/billing', { withCredentials: true });                 
         setCard(response.data)
         setLoading(false)
       } catch (error){
@@ -57,7 +57,7 @@ const CheckOut = () => {
   const getCartBooks = async () => {
       try {
             // Fetch book data based on the bookId
-            const response = await axios.get('http://18.116.29.111:8020/checkout', { withCredentials: true });
+            const response = await axios.get('http://18.218.222.138:8020/checkout', { withCredentials: true });
             if(response.data.cart_items != null){             
              setBuyBook(response.data.cart_items)
              setTotalItems(response.data.total_items);
