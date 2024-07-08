@@ -69,7 +69,7 @@ function Views(){
         <Typography variant="body1"><strong>Score</strong></Typography>
        
       </Grid>
-      <Grid item xs={4} md={3} lg={3}> {/* Set number of columns for different screen sizes */}
+      <Grid item xs={4} md={3} lg={5}> {/* Set number of columns for different screen sizes */}
         <Typography variant="body1"><strong>Title</strong></Typography>
         
         {books.map((book, index) => (

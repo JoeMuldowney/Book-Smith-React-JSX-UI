@@ -91,7 +91,7 @@ const clearCart = async () => {
    const response = await axios.post('http://18.220.48.41:8000/users/boughtbooks/', bookIds, { withCredentials: true });
 
     if (response.status === 200) { // Check the status of the response
-      const deleteResponse = await axios.delete('http://18.116.29.111:8020/deleteall', { withCredentials: true });
+      const deleteResponse = await axios.delete('http://18.218.222.138:8020/deleteall', { withCredentials: true });
       setBuyBook([]);
       setTotalItems();
       setTotalCost();

@@ -44,8 +44,8 @@ const [error, setError] = useState(null);
         const getBilling = async () => {
           try {
             // Fetch book data based on the bookId
-            const resp = await axios.get('http://18.116.29.111:8020/billing', {withCredentials: true });
-            const response = await axios.get('http://18.116.29.111:8020/allcard', {withCredentials: true });
+            const resp = await axios.get('http://18.218.222.138:8020/billing', {withCredentials: true });
+            const response = await axios.get('http://18.218.222.138:8020/allcard', {withCredentials: true });
             if(response.data != null){
               setCards(response.data);
             }
@@ -64,7 +64,7 @@ const [error, setError] = useState(null);
 
       const setCardClick = (id) => {          
          
-          axios.put('http://18.116.29.111:8020/updatecard',{
+          axios.put('http://18.218.222.138:8020/updatecard',{
             "id":id,
             "pay_default": true
           })

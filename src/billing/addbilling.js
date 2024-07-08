@@ -25,7 +25,7 @@ const AddBilling = () => {
   const addCard = (event) => {
     event.preventDefault(); 
     axios.post(
-      'http://18.116.29.111:8020/card',{      
+      'http://18.218.222.138:8020/card',{      
         "first_name": firstName,
         "last_name": lastName,
         "card_num": card_num,

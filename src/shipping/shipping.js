@@ -47,8 +47,8 @@ useEffect(() => {
     const getShipping = async () => {
       try {
         // Fetch book data based on the bookId
-        const response = await axios.get('http://18.116.29.111:8020/allshipping', {withCredentials: true });
-        const resp = await axios.get('http://18.116.29.111:8020/shipping', {withCredentials: true });
+        const response = await axios.get('http://18.218.222.138:8020/allshipping', {withCredentials: true });
+        const resp = await axios.get('http://18.218.222.138:8020/shipping', {withCredentials: true });
 
         setAddress(response.data);
         setShippingAddress(resp.data)
@@ -64,7 +64,7 @@ useEffect(() => {
 []);
 
 const setAddressClick = (id) =>{      
-  axios.put('http://18.116.29.111:8020/updateshipping',
+  axios.put('http://18.218.222.138:8020/updateshipping',
       {
         "id":id,
         "ship_default": true

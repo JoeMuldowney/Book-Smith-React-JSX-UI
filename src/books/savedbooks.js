@@ -49,15 +49,15 @@ useEffect(() => {
     <h6>Click on a book to read more details</h6>   
     <Grid container spacing={4}>
    
-    <Grid item xs={2} md={3} lg={3}>
+    <Grid item xs={2} md={3} lg={2}>
     <Typography variant="body1"><strong>Review Score</strong></Typography>     
     </Grid>
-    <Grid item xs={4} md={3} lg={4}> {/* Set number of columns for different screen sizes */}
+    <Grid item xs={4} md={3} lg={6}> {/* Set number of columns for different screen sizes */}
     <Typography variant="body1"><strong>Title</strong></Typography>
     {book.map((book, index) => (
     <Typography key={index} variant="body1"style={{cursor: 'pointer' }}onClick={() => bookdetailClick(book.id)}>{book.title}</Typography>))}
     </Grid>
-    <Grid item xs={4} md={3} lg={4}> {/* Set number of columns for different screen sizes */}
+    <Grid item xs={4} md={3} lg={2}> {/* Set number of columns for different screen sizes */}
     <Typography variant="body1"><strong>Author</strong></Typography>
     {book.map((book, index) => (
     <Typography key={index} variant="body1"style={{cursor: 'pointer' }}onClick={() => bookdetailClick(book.id)}>{book.author}</Typography>))}
