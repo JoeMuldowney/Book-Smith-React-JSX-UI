@@ -22,7 +22,7 @@ function HomePage() {
       
     <button onClick={()=>{navigate("/newmember");}}>Create Account</button>      
       
-    <button onClick={()=>{navigate("/store");}}>Browse as guest</button>
+    <button onClick={()=>{navigate("/store");}}>Browse store</button>
      
     </div>
     </div>     

@@ -23,6 +23,7 @@ const BookDetail = () => {
   const [totalQuantity, setQuantityValue] = useState(1);  
   const [selectedFormat, setSelectedFormat] = useState(buyBook.format);
   const [selectedPurchaseType, setSelectedPurchaseType] = useState(buyBook.purchaseType);
+  const[userId, setUserId] = useState()
   
   useEffect(() => {
     const fetchBook = async () => {
@@ -35,6 +36,7 @@ const BookDetail = () => {
         // Set the fetched book data to the state
         setBook(response.data.book);
         setLoading(false);
+
        
       } catch (error) {
         setError(error);
@@ -83,7 +85,8 @@ const handleDropdownChange = (event) => {
     <div className="text-overlay-bookview">
     <h1>{book.title}</h1>
     <p>By {book.author}</p>
-    <p>{book.book_description}</p>
+    <p>{book.book_description} </p>
+    
     </div>   
     <div className="text-overlay-bookview-precart">
     <h1 style={{textAlign: "center"}}>Book Purchase Options</h1>
@@ -134,7 +137,7 @@ const handleDropdownChange = (event) => {
     
     <ToggleButton book={book} />    
     {buyBook.purchaseType && buyBook.cost && buyBook.format && (
-        <CartToggleButton buyBook={buyBook} />
+        <CartToggleButton buyBook={buyBook}/>
       )}    
    
      

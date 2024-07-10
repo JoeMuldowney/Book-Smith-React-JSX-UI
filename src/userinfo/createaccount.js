@@ -27,12 +27,24 @@ function NewMember(){
     const [state, setState] = React.useState('');
     const [zip_code, setZipCode] = React.useState('');
     const [pay_default, setPayDefault] = React.useState(true);
+    const [userId, setUserId] = React.useState()
 
-    const handleSubmit = async (e) => {
+    const handleSubmitNext = async (e) => {
         e.preventDefault();       
-        try{
+        try{            
             const response = await axios.post('http://18.220.48.41:8000/users/membership/', { firstname, lastname, email, username, password1, password2 });
-            const res = await axios.post('http://18.218.222.138:8020/card',{      
+            setUserId(response.data.user_id) 
+            setIsFirstPartComplete(true);  
+        }catch (error) {
+            setError('Login not created');
+        }
+    }
+
+    const handleSubmitPayment = async (e) => {
+        e.preventDefault();       
+        try{            
+
+            const res = await axios.post('http://18.218.222.138:8020/membershipcard',{      
                   "first_name": payFirstName,
                   "last_name": payLastName,
                   "card_num": card_num,
@@ -41,13 +53,13 @@ function NewMember(){
                   "street": street,
                   "city": city,
                   "state": state,
-                  "zip_code": parseInt(zip_code, 10),
-                   "pay_default": pay_default
-        }).then(res => {        
-            console.log("Memebrship Created!")
-            navigate('/store');
-        })} catch (error) {
-            setError('Memebrship not created');
+                  "zip_code": zip_code,
+                  "pay_default": pay_default,
+                   "user_id": userId
+            })
+            navigate("/store")   
+        }catch (error) {
+            setError('payment not created');
         }
     }
 
@@ -92,75 +104,68 @@ function NewMember(){
     return (
         <div className="container">       
         <img src={coverphoto} className="cover-image" alt=""/>
-        <section className="text-overlay-membership">       
-        <h1>Virtual Library Membership</h1> 
-        <h5>Billing Information $17.85 Monthy Reocurring Charge</h5>       
-        <form onSubmit={isFirstPartComplete ? handleSubmit : handleFirstPartSubmit}>
-        {!isFirstPartComplete && (
-        <>
-        <div className='form-page'>
-        <div className="form-group">
-        <label>First Name:</label>
-        <input type="text" placeholder='Enter First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required/>        
-        <label>Last Name:</label>
-        <input type="text" placeholder='Enter Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)} required/>        
-        <label>Email:</label>
-        <input type="text" placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
-        </div>
-        <div className="form-group">
-        <label>Username:</label>
-        <input type="text" placeholder='Create A User Name' value={username} onChange={(e) => setUserName(e.target.value)} required/>       
-        <label>Password:</label>
-        <input type="password" placeholder='Create A Pasword' value={password1} onChange={(e) => setPassword1(e.target.value)} required/>
-        <label>Confirm Password:</label>
-        <input type="password" placeholder='Confirm Password' value={password2} onChange={(e) => setPassword2(e.target.value)} required/>
-        </div>
-        </div>
-        {error && <p>{error}</p>}
-        <button type="submit">Next</button>
-        <button onClick={()=>{navigate("/home");}}>cancel</button>
-        </>
-        )}
-        {isFirstPartComplete && (
-        <>
-        <div className='form-page'>
-        <div className="form-group">
-        <label>First Name:</label>
-        <input type="text" placeholder='Billing First Name' value={payFirstName} onChange={(e) => setPayFirstName(e.target.value)} required/>        
-        <label>Last Name:</label>        
-        <input type="text" placeholder='Billing Last Name' value={payLastName} onChange={(e) => setPayLastName(e.target.value)} required/>        
-                
-        <label>Payment Type:</label>
-        <input type="text" placeholder='visa' value={payment_type} onChange={(e) => setPayment(e.target.value)}required/>
-        </div>
-        <div className="form-group">
-        <label>Card Number</label>
-        <input type="text" placeholder='0000 0000 0000 0000' value={card_num} onChange={handleCardNum}required/>   
-        <label>Expiration</label>
-        <input type="text" placeholder='MM/YYYY' value={exp_date} onChange={handleExpDate}required/>
-        
-        
-        <label>Street:</label>
-        <input type="text" placeholder='Billing Street' value={street} onChange={(e) => setStreet(e.target.value)}required/>
-        </div>
-        <div className="form-group">
-        <label>City:</label>
-        <input type='text' placeholder='Billing City' value={city} onChange={(e) => setCity(e.target.value)}required/> 
-       
-        <label>State:</label>
-        <input type='text' placeholder='Billing State' value={state} onChange={(e) => setState(e.target.value)}required/> 
-       
-        <label>ZIP code:</label>
-        <input type='text' placeholder='Billing ZIP' value={zip_code} onChange={(e) => setZipCode(e.target.value)}required/> 
-        </div>
-        </div>
-        {error && <p>{error}</p>}
-        <button type="submit">Create</button>
-        <button onClick={()=>{navigate("/home");}}>cancel</button>
-        </>
-        )}
-        </form>
-        </section>
+        <section className="text-overlay-membership">
+                <h1>Virtual Library Membership</h1>
+                <h5>Billing Information $17.85 Monthly Recurring Charge</h5>
+
+                {!isFirstPartComplete ? (
+                    <form onSubmit={handleSubmitNext}>
+                        <div className='form-page'>
+                            <div className="form-group">
+                                <label>First Name:</label>
+                                <input type="text" placeholder='Enter First Name' value={firstname} onChange={(e) => setFirstName(e.target.value)} required/>
+                                <label>Last Name:</label>
+                                <input type="text" placeholder='Enter Last Name' value={lastname} onChange={(e) => setLastName(e.target.value)} required/>
+                                <label>Email:</label>
+                                <input type="text" placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                            </div>
+                            <div className="form-group">
+                                <label>Username:</label>
+                                <input type="text" placeholder='Create A User Name' value={username} onChange={(e) => setUserName(e.target.value)} required/>
+                                <label>Password:</label>
+                                <input type="password" placeholder='Create A Password' value={password1} onChange={(e) => setPassword1(e.target.value)} required/>
+                                <label>Confirm Password:</label>
+                                <input type="password" placeholder='Confirm Password' value={password2} onChange={(e) => setPassword2(e.target.value)} required/>
+                            </div>
+                        </div>
+                        {error && <p>{error}</p>}
+                        <button type="submit">Next</button>
+                        <button onClick={()=>{navigate("/home");}}>cancel</button>
+                    </form>
+                ) : (
+                    <form onSubmit={handleSubmitPayment}>
+                        <div className='form-page'>
+                            <div className="form-group">
+                                <label>First Name:</label>
+                                <input type="text" placeholder='Billing First Name' value={payFirstName} onChange={(e) => setPayFirstName(e.target.value)} required/>
+                                <label>Last Name:</label>
+                                <input type="text" placeholder='Billing Last Name' value={payLastName} onChange={(e) => setPayLastName(e.target.value)} required/>
+                                <label>Payment Type:</label>
+                                <input type="text" placeholder='visa' value={payment_type} onChange={(e) => setPayment(e.target.value)} required/>
+                            </div>
+                            <div className="form-group">
+                                <label>Card Number</label>
+                                <input type="text" placeholder='0000 0000 0000 0000' value={card_num} onChange={handleCardNum} required/>
+                                <label>Expiration</label>
+                                <input type="text" placeholder='MM/YYYY' value={exp_date} onChange={handleExpDate} required/>
+                                <label>Street:</label>
+                                <input type="text" placeholder='Billing Street' value={street} onChange={(e) => setStreet(e.target.value)} required/>
+                            </div>
+                            <div className="form-group">
+                                <label>City:</label>
+                                <input type='text' placeholder='Billing City' value={city} onChange={(e) => setCity(e.target.value)} required/>
+                                <label>State:</label>
+                                <input type='text' placeholder='Billing State' value={state} onChange={(e) => setState(e.target.value)} required/>
+                                <label>ZIP code:</label>
+                                <input type='text' placeholder='Billing ZIP' value={zip_code} onChange={(e) => setZipCode(e.target.value)} required/>
+                            </div>
+                        </div>
+                        {error && <p>{error}</p>}
+                        <button type="submit">Create</button>
+                        <button onClick={()=>{navigate("/home");}}>cancel</button>
+                    </form>
+                )}
+            </section>
         </div>
                 
     );

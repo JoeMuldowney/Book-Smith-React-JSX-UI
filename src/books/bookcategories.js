@@ -15,9 +15,7 @@ function Views(){
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const navigate = useNavigate()
-  const cartClick = () => {
-      navigate('/cart')
-  }
+
   const bookdetailClick = (id) => {
     navigate(`/details/${id}`);
   };
@@ -69,7 +67,7 @@ function Views(){
         <Typography variant="body1"><strong>Score</strong></Typography>
        
       </Grid>
-      <Grid item xs={4} md={3} lg={5}> {/* Set number of columns for different screen sizes */}
+      <Grid item xs={4} md={3} lg={4}> {/* Set number of columns for different screen sizes */}
         <Typography variant="body1"><strong>Title</strong></Typography>
         
         {books.map((book, index) => (
@@ -77,7 +75,7 @@ function Views(){
           <Typography key={index} variant="body1" style={{cursor: 'pointer' }}onClick={() => bookdetailClick(book.id)}>{book.title}</Typography> 
         ))}
       </Grid>
-      <Grid item xs={4} md={1} lg={4}>
+      <Grid item xs={4} md={1} lg={3}>
         <Typography variant="body1"><strong>Description</strong></Typography>
         {books.map((book, index) => (
                 <Typography key={index} variant="body1"style={{cursor: 'pointer' }} onClick={() => bookdetailClick(book.id)}>{book.book_description}</Typography>
@@ -116,7 +114,7 @@ function Views(){
         </div>
         
         </div>
-        {/* Pagination Controls */}
+        
 
         </Layout>
   );

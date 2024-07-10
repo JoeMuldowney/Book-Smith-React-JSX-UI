@@ -4,10 +4,11 @@ import coverphoto from '../images/billing.jpg';
 import {useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Grid, Typography} from '@mui/material';
-
+import { useParams } from 'react-router-dom';
 
 const Shipping = () => {
     const navigate = useNavigate();
+    const {userId} = useParams();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [changeAddress, setChangeAddress] = React.useState(false);
@@ -15,11 +16,9 @@ const Shipping = () => {
 const back = () => {
   navigate(-1);
       }
-      const addAddress = () => {
-        navigate('/address')
+const addAddress = () => {
+    navigate('/address')
 }
-
-    
 const [address, setAddress] = useState([
     {
     id:0,
@@ -28,7 +27,7 @@ const [address, setAddress] = useState([
     street: '',
     city: '',
     state: '',
-    zip_code: 0,
+    zip_code: '',
     ship_default: false
 }])
 
@@ -39,7 +38,7 @@ const [shippingAddress, setShippingAddress] = useState(
   street: '',
   city: '',
   state: '',
-  zip_code: 0,
+  zip_code: '',
   ship_default: false
 })
 
@@ -47,11 +46,12 @@ useEffect(() => {
     const getShipping = async () => {
       try {
         // Fetch book data based on the bookId
-        const response = await axios.get('http://18.218.222.138:8020/allshipping', {withCredentials: true });
-        const resp = await axios.get('http://18.218.222.138:8020/shipping', {withCredentials: true });
-
+        const response = await axios.get(`http://18.218.222.138:8020/allshipping/${userId}`, {withCredentials: true });
+        const resp = await axios.get(`http://18.218.222.138:8020/shipping/${userId}`, {withCredentials: true });
+        if (response.data != null){
         setAddress(response.data);
         setShippingAddress(resp.data)
+        }
         setLoading(false);
 
       } catch (error) {
@@ -64,8 +64,9 @@ useEffect(() => {
 []);
 
 const setAddressClick = (id) =>{      
-  axios.put('http://18.218.222.138:8020/updateshipping',
+  axios.put(`http://18.218.222.138:8020/updateshipping/${userId}`, 
       {
+        withCredentials: true, 
         "id":id,
         "ship_default": true
       })
@@ -111,12 +112,9 @@ return(
                 <Typography key={index} variant="body1" style={{cursor: 'pointer' }}onClick={() => setAddressClick(address.id)}>{address.zip_code}</Typography>
               ))}
       </Grid>  
-
-      </Grid>  
-    
+      </Grid>     
     </div>   
-    <div className="text-overlay-shipping-default">
-    
+    <div className="text-overlay-shipping-default">   
     <div>
     <div>
     <h1 style={{textAlign: "center"}}>Current Shipping Address</h1>
@@ -125,11 +123,8 @@ return(
     <p>{shippingAddress.street}</p>
     <p>{shippingAddress.city} {shippingAddress.state} {shippingAddress.zip_code}</p> 
     </div>
-    
     <button onClick={back}>Back</button>
     <button onClick={addAddress}>Add Address</button> 
-    
-    
     </div>
     </div>
     </div>

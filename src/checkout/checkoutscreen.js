@@ -4,10 +4,13 @@ import Layout from '../userinfo/layout';
 import coverphoto from '../images/checkout.jpg';
 import {useNavigate } from 'react-router-dom';
 import { Grid, Typography} from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 
 const CheckOut = () => {
   const navigate = useNavigate();
+  const {userId} = useParams();
+  
   const [totalItems, setTotalItems] = useState();
   const [totalCost, setTotalCost] = useState();
   const[buyBook, setBuyBook] = useState([
@@ -32,7 +35,7 @@ const CheckOut = () => {
 
     const getAddress = async () => {
       try {          
-          const response = await axios.get('http://18.218.222.138:8020/shipping', { withCredentials: true });                 
+          const response = await axios.get(`http://18.218.222.138:8020/shipping/${userId}`, { withCredentials: true });                 
           setAddress(response.data)         
           setLoading(false)
         } catch (error){
@@ -44,7 +47,7 @@ const CheckOut = () => {
 
   const getBilling = async () => {
     try {          
-        const response = await axios.get('http://18.218.222.138:8020/billing', { withCredentials: true });                 
+        const response = await axios.get(`http://18.218.222.138:8020/billing/${userId}`, { withCredentials: true });                 
         setCard(response.data)
         setLoading(false)
       } catch (error){
@@ -57,7 +60,7 @@ const CheckOut = () => {
   const getCartBooks = async () => {
       try {
             // Fetch book data based on the bookId
-            const response = await axios.get('http://18.218.222.138:8020/checkout', { withCredentials: true });
+            const response = await axios.get(`http://18.218.222.138:8020/checkout`, { withCredentials: true });
             if(response.data.cart_items != null){             
              setBuyBook(response.data.cart_items)
              setTotalItems(response.data.total_items);
@@ -86,17 +89,17 @@ const CheckOut = () => {
 const clearCart = async () => {
 
   try {
-    const bookIds = buyBook.map(book => ({ book_id: book.book_id }));
+  const bookIds = buyBook.map(book => ({ book_id: book.book_id }));
 
-   const response = await axios.post('http://18.220.48.41:8000/users/boughtbooks/', bookIds, { withCredentials: true });
+  const response = await axios.post('http://18.220.48.41:8000/users/boughtbooks/', bookIds, { withCredentials: true });
 
-    if (response.status === 200) { // Check the status of the response
-      const deleteResponse = await axios.delete('http://18.218.222.138:8020/deleteall', { withCredentials: true });
-      setBuyBook([]);
-      setTotalItems();
-      setTotalCost();
+  if (response.status === 200) { // Check the status of the response
+    const deleteResponse = await axios.delete(`http://18.218.222.138:8020/deleteall/${userId}`, { withCredentials: true });
+    setBuyBook([]);
+    setTotalItems();
+    setTotalCost();
       
-    }     
+  }     
     
   } catch (error) {
     console.error('Error clearing cart', error);
@@ -163,8 +166,8 @@ const clearCart = async () => {
    
     <button onClick={()=>{navigate("/store");}}>Return</button>    
     <button onClick={clearCart}>Purchase</button>
-    <button onClick={()=>{navigate("/shipping");}}>New Address</button>
-    <button onClick={()=>{navigate("/billing");}}>New Card</button>
+    <button onClick={()=>{navigate(`/shipping/${userId}`);}}>New Address</button>
+    <button onClick={()=>{navigate(`/billing/${userId}`);}}>New Card</button>
     </div> 
     </div>
     </div>   

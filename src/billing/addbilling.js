@@ -5,10 +5,10 @@ import coverphoto from '../images/billing.jpg';
 import Layout from '../userinfo/layout';
 
 
+
 const AddBilling = () => {
-
+  
   const navigate = useNavigate()
-
   const[firstName, setFirstName] = React.useState('')
   const[lastName, setLastName] = React.useState('')
   const[payment_type, setPayment] = React.useState('')
@@ -18,8 +18,21 @@ const AddBilling = () => {
   const[city, setCity] = React.useState('')
   const[state, setState] = React.useState('')
   const[zip_code, setZipCode] = React.useState('')
-  
-  
+  const[userId, setUserId] = React.useState()
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get('http://18.220.48.41:8000/users/logstatus/');
+        if (response.status === 200) {          
+          setUserId(response.data.user_id)          
+        } 
+      } catch (error) {
+        console.error('Not able to retrieve user', error);
+      }
+    };
+    getUser();
+  }, []);
 
 
   const addCard = (event) => {
@@ -34,11 +47,12 @@ const AddBilling = () => {
         "street": street,
         "city": city,
         "state": state,
-        "zip_code": zip_code  
+        "zip_code": zip_code,
+        "user_id": userId 
       })
       .then(response => {        
         console.log("Card Added!")
-        navigate('/billing');
+        navigate(`/billing/${userId}`);
       })       
       .catch(error => {
       console.error('Card Not Saved', error);

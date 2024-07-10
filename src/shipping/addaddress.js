@@ -14,6 +14,20 @@ const AddAddress = () => {
   const[state, setState] = React.useState('')
   const[zip_code, setZipCode] = React.useState('')
   const[default_ship, setDefaultShip] = React.useState(false)
+  const[userId, setUserId] = React.useState()
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get('http://18.220.48.41:8000/users/logstatus/');
+        if (response.status === 200) {          
+          setUserId(response.data.user_id)          
+        } 
+      } catch (error) {
+        console.error('Not able to retrieve user', error);
+      }
+    };
+    getUser();
+  }, []);
 
   const addAddress = (event) => {
     event.preventDefault();
@@ -24,11 +38,12 @@ const AddAddress = () => {
         "street": street,
         "city": city,
         "state": state,
-        "zip_code":  parseInt(zip_code, 10)   
+        "zip_code":  parseInt(zip_code, 10),
+        "user_id": userId   
       })
       .then(response => {        
         console.log("Address Added!")
-        navigate('/shipping');
+        navigate(`/shipping/${userId}`);
       })       
       .catch(error => {
         console.error('Address Not Saved', error);

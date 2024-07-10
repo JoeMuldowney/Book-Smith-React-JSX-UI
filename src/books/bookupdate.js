@@ -3,12 +3,11 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const BookUpdate = (props) => {
-  const { buyBook } = props;
+  const { buyBook, userId} = props;
   const { id} = useParams();
-  
+  console.log(userId)
  
-  //convert to integers
-  //const bookId = parseInt(id, 10);
+
   const amount = parseInt(buyBook.cost,10)
   const stockAmount = parseInt(buyBook.quantity,10)
 
@@ -19,7 +18,8 @@ const BookUpdate = (props) => {
         "quantity": stockAmount,
         "format": buyBook.format,
         "purchase": buyBook.purchaseType,
-        "cost": amount
+        "cost": amount,
+        "user_id": userId
       })
       .then(response => {        
         console.log("Book updated in cart")
