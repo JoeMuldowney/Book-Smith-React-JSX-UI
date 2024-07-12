@@ -8,25 +8,25 @@ const Toolbar = () => {
   
   const navigate = useNavigate();
   const [loggedin, setLoggedIn] = useState(false);
-  const [userId, setUserId] = useState();
   
+
   useEffect(() => {
     const fetchLogStatus = async () => {
       try {
         const response = await axios.get('http://18.220.48.41:8000/users/logstatus/');
         if (response.status === 200) {
           setLoggedIn(true);
-          setUserId(response.data.user_id)
-          
-          
+          // Set userId if logged in
         } else {
           setLoggedIn(false);
-          setUserId(0)
+         
         }
       } catch (error) {
         setLoggedIn(false);
+       
       }
     };
+
     fetchLogStatus();
   }, []);
 
@@ -35,17 +35,17 @@ const Toolbar = () => {
 
   const handleProfileClick = () => navigate('/profile');
   const handleAccountClick = () => navigate('/account');
-  const cartClick = () => navigate(`/checkout/${userId}`);
-  const billingClick = () => navigate(`/billing/${userId}`);
-  const shippingClick = () => navigate(`/shipping/${userId}`);
+  const cartClick = () => navigate(`/checkout`);
+  const billingClick = () => navigate(`/billing`);
+  const shippingClick = () => navigate(`/shipping`);
   const storeClick = () => navigate('/store');
 
   const handleLogout = async () => {
     try {
       await axios.post('http://18.220.48.41:8000/users/memberlogout/');
       setLoggedIn(false);
+    
       navigate('/store');
-            
     } catch (error) {
       if (error.response && error.response.status === 400) {
         navigate('/login');

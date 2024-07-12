@@ -8,7 +8,7 @@ const BookUpdate = (props) => {
   console.log(userId)
  
 
-  const amount = parseInt(buyBook.cost,10)
+  const amount = parseFloat(buyBook.cost,10)
   const stockAmount = parseInt(buyBook.quantity,10)
 
 

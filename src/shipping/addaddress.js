@@ -43,7 +43,7 @@ const AddAddress = () => {
       })
       .then(response => {        
         console.log("Address Added!")
-        navigate(`/shipping/${userId}`);
+        navigate('/shipping');
       })       
       .catch(error => {
         console.error('Address Not Saved', error);
@@ -76,7 +76,7 @@ const AddAddress = () => {
     </div> 
     </div>
     <button type="submit">Save</button>
-    <button onClick={()=>{navigate(-1);}}>cancel</button>        
+    <button onClick={()=>{ navigate('/shipping');}}>cancel</button>        
     
     </form>
     </section>

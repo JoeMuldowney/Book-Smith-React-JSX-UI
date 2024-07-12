@@ -34,13 +34,11 @@ function App() {
       <Route path="/details/:id" Component={BookDetail} />
       <Route path="/savedbooks" Component={SavedBook} />
       <Route path="/boughtbooks" Component={BuyHistory} />
-      <Route path="/checkout/:userId" Component={CheckOut} />
-      <Route path="/billing/:userId" Component={Billing} />
-      <Route path="/shipping/:userId" Component={Shipping} />
+      <Route path="/checkout" Component={CheckOut} />
+      <Route path="/billing" Component={Billing} />
+      <Route path="/shipping" Component={Shipping} />
       <Route path="/address" Component={AddAddress} />
       <Route path="/card" Component={AddBilling}/>
-    
-      
     </Routes>
   </Router>  
        

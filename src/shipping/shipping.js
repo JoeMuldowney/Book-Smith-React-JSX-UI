@@ -4,21 +4,14 @@ import coverphoto from '../images/billing.jpg';
 import {useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Grid, Typography} from '@mui/material';
-import { useParams } from 'react-router-dom';
 
 const Shipping = () => {
     const navigate = useNavigate();
-    const {userId} = useParams();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [changeAddress, setChangeAddress] = React.useState(false);
+    const[userId, setUserId] = React.useState()
     
-const back = () => {
-  navigate(-1);
-      }
-const addAddress = () => {
-    navigate('/address')
-}
 const [address, setAddress] = useState([
     {
     id:0,
@@ -42,34 +35,44 @@ const [shippingAddress, setShippingAddress] = useState(
   ship_default: false
 })
 
-useEffect(() => {
-    const getShipping = async () => {
-      try {
-        // Fetch book data based on the bookId
-        const response = await axios.get(`http://18.218.222.138:8020/allshipping/${userId}`, {withCredentials: true });
-        const resp = await axios.get(`http://18.218.222.138:8020/shipping/${userId}`, {withCredentials: true });
-        if (response.data != null){
-        setAddress(response.data);
-        setShippingAddress(resp.data)
-        }
-        setLoading(false);
-
-      } catch (error) {
-          setError(error);
-          setLoading(false);
+const back = () => {
+  navigate(-1);
       }
-    };
-    getShipping();
-}, 
-[]);
+const addAddress = () => {
+    navigate('/address')
+}
+
+useEffect(() => {
+  const getBilling = async () => {
+    try {
+        // First request
+    const userResponse = await axios.get('http://18.220.48.41:8000/users/logstatus');
+    const userId = userResponse.data.user_id;
+    setUserId(userId);
+      // Fetch book data based on the bookId
+    const resp = await axios.get(`http://18.218.222.138:8020/shipping`,{
+      params: { user: userId }
+    })
+    const response = await axios.get(`http://18.218.222.138:8020/allshipping`,{
+      params: { user: userId }
+    })
+    if (response.data != null){
+      setAddress(response.data);
+      setShippingAddress(resp.data)
+      }
+      setLoading(false);
+         
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+      }
+  };
+  getBilling();
+}, []);
 
 const setAddressClick = (id) =>{      
-  axios.put(`http://18.218.222.138:8020/updateshipping/${userId}`, 
-      {
-        withCredentials: true, 
-        "id":id,
-        "ship_default": true
-      })
+  axios.put(`http://18.218.222.138:8020/updateshipping`,{withCredentials: true},{
+    params: { user: userId, id: id}})
       .then(response => {        
           console.log("Address Changed")
           window.location.reload();

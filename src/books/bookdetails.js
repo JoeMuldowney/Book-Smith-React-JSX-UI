@@ -23,10 +23,11 @@ const BookDetail = () => {
   const [totalQuantity, setQuantityValue] = useState(1);  
   const [selectedFormat, setSelectedFormat] = useState(buyBook.format);
   const [selectedPurchaseType, setSelectedPurchaseType] = useState(buyBook.purchaseType);
-  const[userId, setUserId] = useState()
   
-  useEffect(() => {
-    const fetchBook = async () => {
+ 
+useEffect(() => {
+
+  const fetchBook = async () => {
       try {
         // Fetch book data based on the bookId
         const response = await axios.get(`http://18.220.48.41:8000/books/view/`+id, {withCredentials: true });
@@ -44,13 +45,17 @@ const BookDetail = () => {
       }
     };
     fetchBook();
+   
   }, [id]);
 
-  // Event handlers to update the state when radio inputs change
+// Event handlers to update the state when radio inputs change
+
 const handleFormatChange = (event) => {
   setSelectedFormat(event.target.value);
+
   setBuyBook({ ...buyBook, format: event.target.value, title: book.title });  
 };
+
 const handlePurchaseTypeChange = (event) => {
   let selectedValue = event.target.value;
   let price;  
@@ -61,8 +66,10 @@ const handlePurchaseTypeChange = (event) => {
     price = book.rent_amount;
   }
   setSelectedPurchaseType(selectedValue);
-  setBuyBook({ ...buyBook, purchaseType: selectedValue, cost: price });  
+  setBuyBook({ ...buyBook, purchaseType: selectedValue, cost: price }); 
+  console.log("get price:",price) 
 };
+
 //handle select for book quantity
 const handleDropdownChange = (event) => {
   let selectedValue = event.target.value;

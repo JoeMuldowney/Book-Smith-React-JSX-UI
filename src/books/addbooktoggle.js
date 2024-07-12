@@ -10,52 +10,44 @@ const CartToggleButton = (props) => {
   const [error, setError] = React.useState('')
   //convert to integers
   const bookId = parseInt(id, 10);
-  const price = parseInt(buyBook.cost,10)
+  const price = parseFloat(buyBook.cost,10)
   const amount = parseInt(buyBook.quantity)
-  const[userId, setUserId] = React.useState()
-
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await axios.get('http://18.220.48.41:8000/users/logstatus/');
-        if (response.status === 200) {          
-          setUserId(response.data.user_id)          
-        } 
-      } catch (error) {
-        console.error('Not able to retrieve user', error);
-      }
-    };
-    getUser();
-  }, []);
-
+  const[uid, setUserId] = React.useState(null)
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
-        const response = await axios.get(`http://18.218.222.138:8020/data/${id}`);
-        console.log(response.data);
-        if (!response.data) {
+        // First request
+        const userResponse = await axios.get('http://18.220.48.41:8000/users/logstatus');
+        const userId = userResponse.data.user_id;
+        setUserId(userId);
+    
+        // Second request, using the userId from the first request
+        const cartResponse = await axios.get('http://18.218.222.138:8020/getcartbook', {
+          params: { id: id, user: userId }
+        });
+  
+        // Log the response from the second request
+        console.log("Cart response:", cartResponse.data);
+  
+        if (!cartResponse.data) {
           setIsAdded(false);
         } else {
           setIsAdded(true);
         }
   
-        //const resp = await axios.get(`http://localhost:8000/users/logstatus`);
-        //setUserId(resp.data.user_id)
-      
-        
       } catch (error) {
         setError('Error getting data');
       }
     };
   
     fetchData();
-  }, []);
+  }, [id]); // Assuming `id` is a dependency
 
   const addBook = () => {
     axios.post(
       'http://18.218.222.138:8020/cart',{ 
-        "user_id": userId,     
+        "user_id": uid,     
         "book_id": bookId,
         "title": buyBook.title,
         "quantity": amount,
@@ -71,10 +63,12 @@ const CartToggleButton = (props) => {
         console.error('Book Not Saved', error);
       });
   }  
-  
+
   const deleteBook = () => {   
     axios.delete(
-      `http://18.218.222.138:8020/delete/${id}/${userId}`)
+      `http://18.218.222.138:8020/delete`,{
+        params: { id: id, user: uid }
+      })
      .then(response => {       
         // Update state to reflect that the book is saved
         setIsAdded(false);
@@ -99,7 +93,7 @@ const CartToggleButton = (props) => {
     <button onClick={handleCartToggle} style={{ fontSize: '12px' }}>
       {isAdded ? 'Remove from Cart' : 'Add to Cart'}
     </button>
-    {isAdded && <BookUpdate buyBook={buyBook} userId={userId} />}
+    {isAdded && <BookUpdate buyBook={buyBook} userId={uid} />}
   </div>
   );
 };

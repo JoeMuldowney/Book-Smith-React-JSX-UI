@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import coverphoto from '../images/billing.jpg';
 import Layout from '../userinfo/layout';
 
-
-
 const AddBilling = () => {
   
   const navigate = useNavigate()
@@ -34,11 +32,13 @@ const AddBilling = () => {
     getUser();
   }, []);
 
+  const addCard =  (event) => {
+    event.preventDefault();
+    try {    
 
-  const addCard = (event) => {
-    event.preventDefault(); 
-    axios.post(
-      'http://18.218.222.138:8020/card',{      
+     axios.post(
+      'http://18.218.222.138:8020/addcard',
+      {      
         "first_name": firstName,
         "last_name": lastName,
         "card_num": card_num,
@@ -49,15 +49,19 @@ const AddBilling = () => {
         "state": state,
         "zip_code": zip_code,
         "user_id": userId 
-      })
-      .then(response => {        
-        console.log("Card Added!")
-        navigate(`/billing/${userId}`);
-      })       
-      .catch(error => {
+      } 
+    ).then(response => {        
+      console.log("Card added successfully");
+      navigate('/billing');
+    }).catch(error => {
       console.error('Card Not Saved', error);
-      });
+    });
+
+  } catch (error) {
+    console.error('Error fetching user ID', error);
   }
+};
+
   const handleCardNum = (e) => {
     let value = e.target.value.replace(/\D/g, '');
 
@@ -121,7 +125,7 @@ const AddBilling = () => {
     </div>
     </div>
     <button type="submit">Save</button>
-    <button onClick={()=>{navigate(-1);}}>cancel</button>        
+    <button onClick={()=>{navigate(`/billing`);}}>cancel</button>        
     
 
     </form>

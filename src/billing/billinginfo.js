@@ -4,88 +4,81 @@ import coverphoto from '../images/billing.jpg';
 import {useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Grid, Typography} from '@mui/material';
-import { useParams } from 'react-router-dom';
-
-
 
 const Billing = () => {
-    const navigate = useNavigate();
-    const {userId} = useParams();
-    
-    const back = () => {
-      navigate(-1);
-      }
-      const addCardClick = () => {
-        navigate('/card')
-      }
-      const [cards, setCards] = useState([
-    {
-       
-        first_name: '',
-        last_name: '',
-        card_num: '',
-        payment_type: '',
-        exp_date: '',
-        pay_default: false
-    }])
-
-
-    const [mainCard, setMainCard] = useState(
-    {
-   
+const navigate = useNavigate();
+const [loading, setLoading] = React.useState(true);
+const [error, setError] = React.useState(null);
+const[userId, setUserId] = React.useState(null)    
+  const back = () => {
+    navigate(-1);
+  }
+  const addCardClick = () => {
+    navigate('/card', { state: { userId } });
+  }
+  const [cards, setCards] = useState([
+  {
     first_name: '',
     last_name: '',
     card_num: '',
     payment_type: '',
     exp_date: '',
-    pay_default: true
+    pay_default: false
+  }])
+
+const [mainCard, setMainCard] = useState(
+  {
+  first_name: '',
+  last_name: '',
+  card_num: '',
+  payment_type: '',
+  exp_date: '',
+  pay_default: true
 })
 
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
-    useEffect(() => {
-        const getBilling = async () => {
-          try {
-            // Fetch book data based on the bookId
-            const resp = await axios.get(`http://18.218.222.138:8020/billing/${userId}`, {withCredentials: true });
-            const response = await axios.get(`http://18.218.222.138:8020/allcard/${userId}`, {withCredentials: true });
-            if(response.data != null){
-              setCards(response.data);
-            }
-            if(resp.data != null){
-            setMainCard(resp.data)
-            }
-            setLoading(false);
-           
-          } catch (error) {
-            setError(error);
-            setLoading(false);
-          }
-        };
-        getBilling();
-      }, []);
 
-      const setCardClick = (id) => {          
-         
-          axios.put(`http://18.218.222.138:8020/updatecard/${userId}`,{
-            withCredentials: true,
-            "id":id,
-            "pay_default": true
-          })
-          .then(response => {        
-            console.log("Card Changed")
-            window.location.reload();
-          })       
-          .catch(error => {
-    
-            console.error('Card Not Changed', error);
-          })
-  
-  
+  useEffect(() => {
+    const getBilling = async () => {
+      try {
+          // First request
+      const userResponse = await axios.get('http://18.220.48.41:8000/users/logstatus');
+      const userId = userResponse.data.user_id;
+      setUserId(userId);
+        // Fetch book data based on the bookId
+      const resp = await axios.get(`http://18.218.222.138:8020/billing`,{
+        params: { user: userId }
+      })
+      const response = await axios.get(`http://18.218.222.138:8020/allcard`,{
+        params: { user: userId }
+      })
+        if(response.data != null){
+          setCards(response.data);
         }
+        if(resp.data != null){
+          setMainCard(resp.data)
+          }
+          setLoading(false);
+           
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+        }
+    };
+    getBilling();
+  }, []);
 
-      
-console.log(cards)
+  const setCardClick = (id) => {          
+         
+   axios.put(`http://18.218.222.138:8020/updatecard`,{withCredentials: true},{
+    params: { user: userId, id: id}})
+      .then(response => {        
+      console.log("Card Changed")
+      window.location.reload();
+      })       
+      .catch(error => {
+        console.error('Card Not Changed', error);
+    })
+}
     return(
     <Layout>
     <div className="container-book-view">
