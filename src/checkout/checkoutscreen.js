@@ -28,7 +28,7 @@ useEffect(() => {
 const getCheckOut = async () => {
   try{
   // First request
-  const userResponse = await axios.get('http://18.220.48.41:8000/users/logstatus');
+  const userResponse = await axios.get('http://csjoeportfolio.com/backendapi/users/logstatus');
   const userId = userResponse.data.user_id;
   setUserId(userId);
    
@@ -73,7 +73,7 @@ if (loading) {
 const clearCart = async () => {
   try {
   const bookIds = buyBook.map(book => ({ book_id: book.book_id }));
-  const response = await axios.post('http://18.220.48.41:8000/users/boughtbooks/', bookIds, { withCredentials: true });
+  const response = await axios.post('http://csjoeportfolio.com/backendapi/users/boughtbooks/', bookIds, { withCredentials: true });
   if (response.status === 200) { // Check the status of the response
     const deleteResponse = await axios.delete(`http://18.218.222.138:8020/deleteall`,{
     params: { user: userId}})

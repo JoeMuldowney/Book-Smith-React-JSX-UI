@@ -32,7 +32,7 @@ function NewMember(){
     const handleSubmitNext = async (e) => {
         e.preventDefault();       
         try{            
-            const response = await axios.post('http://18.220.48.41:8000/users/membership/', { firstname, lastname, email, username, password1, password2 });
+            const response = await axios.post('http://csjoeportfolio.com/backendapi/users/membership/', { firstname, lastname, email, username, password1, password2 });
             setUserId(response.data.user_id) 
             setIsFirstPartComplete(true);  
         }catch (error) {

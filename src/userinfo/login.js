@@ -17,7 +17,7 @@ function Login() {
       e.preventDefault();
        
     axios.post(
-          'http://18.220.48.41:8000/users/memberlogin/',{ username, password})
+          'http://csjoeportfolio.com/backendapi/users/memberlogin/',{ username, password})
         .then(response => {
  
           navigate('/store');

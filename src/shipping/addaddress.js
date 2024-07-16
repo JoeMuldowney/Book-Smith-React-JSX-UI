@@ -18,7 +18,7 @@ const AddAddress = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get('http://18.220.48.41:8000/users/logstatus/');
+        const response = await axios.get('http://csjoeportfolio.com/backendapi/users/logstatus/');
         if (response.status === 200) {          
           setUserId(response.data.user_id)          
         } 
