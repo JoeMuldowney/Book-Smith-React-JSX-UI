@@ -44,7 +44,7 @@ function NewMember(){
         e.preventDefault();       
         try{            
 
-            const res = await axios.post('http://18.218.222.138:8020/membershipcard',{      
+            const res = await axios.post('https://18.218.222.138:8020/membershipcard',{      
                   "first_name": payFirstName,
                   "last_name": payLastName,
                   "card_num": card_num,

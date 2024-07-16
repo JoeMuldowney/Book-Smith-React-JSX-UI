@@ -24,7 +24,7 @@ useEffect(() => {
   const fetchBook = async () => {
     try {
       // Fetch book data based on the bookId
-      const response = await axios.get('http://csjoeportfolio.com/backendapi/users/boughthistory/');
+      const response = await axios.get('https://csjoeportfolio.com/backendapi/users/boughthistory/');
         // Process the book descriptions before setting the state
         const processedBooks = response.data.books.map(book => ({
           ...book         

@@ -23,7 +23,7 @@ function Profile(){
     useEffect(() => {
       const fetchProfileData = async () => {
         try{        
-            const response = await axios.get('http://csjoeportfolio.com/backendapi/users/viewprofile/');
+            const response = await axios.get('https://csjoeportfolio.com/backendapi/users/viewprofile/');
             const profileData = response.data;
             setProfileDesc(profileData.profileDesc);            
             setFavoriteBook(profileData.favoriteBook);
@@ -52,7 +52,7 @@ function Profile(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-      const response = await axios.post('http://csjoeportfolio.com/backendapi/users/memberprofile/',
+      const response = await axios.post('https://csjoeportfolio.com/backendapi/users/memberprofile/',
           {profileDesc,favoriteBook, currentBook, favoriteAuthor, favoriteGenre, publicProfile}           
         ).then(response => {
           window.location.reload();

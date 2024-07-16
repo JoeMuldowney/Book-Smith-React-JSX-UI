@@ -37,7 +37,7 @@ const AddBilling = () => {
     try {    
 
      axios.post(
-      'http://18.218.222.138:8020/addcard',
+      'https://18.218.222.138:8020/addcard',
       {      
         "first_name": firstName,
         "last_name": lastName,

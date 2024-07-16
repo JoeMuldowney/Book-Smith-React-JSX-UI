@@ -10,7 +10,7 @@ const ToggleButton = () => {
   useEffect(() => {
   const checkSavedStatus = () => {
     axios.get(
-      `http://csjoeportfolio.com/backendapi/users/bookstatus/${id}`)
+      `https://csjoeportfolio.com/backendapi/users/bookstatus/${id}`)
       .then(response => {
         if (response.status === 201) {
           // Status 200 indicates that the book is saved          
@@ -30,7 +30,7 @@ const ToggleButton = () => {
 
   const saveBook = () => {
     axios.post(
-      `http://csjoeportfolio.com/backendapi/users/savebook/${id}`)
+      `https://csjoeportfolio.com/backendapi/users/savebook/${id}`)
       .then(response => {
         console.log(response.data);
         // Update state to reflect that the book is saved
@@ -43,7 +43,7 @@ const ToggleButton = () => {
 
   const deleteBook = () => {   
     axios.delete(
-      `http://csjoeportfolio.com/backendapi/users/deletebook/${id}`)
+      `https://csjoeportfolio.com/backendapi/users/deletebook/${id}`)
       .then(response => {
         console.log(response.data);
         // Update state to reflect that the book is saved

@@ -46,7 +46,7 @@ useEffect(() => {
   const getBilling = async () => {
     try {
         // First request
-    const userResponse = await axios.get('http://csjoeportfolio.com/backendapi/users/logstatus');
+    const userResponse = await axios.get('https://csjoeportfolio.com/backendapi/users/logstatus');
     const userId = userResponse.data.user_id;
     setUserId(userId);
       // Fetch book data based on the bookId
@@ -71,7 +71,7 @@ useEffect(() => {
 }, []);
 
 const setAddressClick = (id) =>{      
-  axios.put(`http://18.218.222.138:8020/updateshipping`,{withCredentials: true},{
+  axios.put(`https://18.218.222.138:8020/updateshipping`,{withCredentials: true},{
     params: { user: userId, id: id}})
       .then(response => {        
           console.log("Address Changed")

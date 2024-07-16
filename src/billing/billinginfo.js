@@ -41,7 +41,7 @@ const [mainCard, setMainCard] = useState(
     const getBilling = async () => {
       try {
           // First request
-      const userResponse = await axios.get('http://csjoeportfolio.com/backendapi/users/logstatus');
+      const userResponse = await axios.get('https://csjoeportfolio.com/backendapi/users/logstatus');
       const userId = userResponse.data.user_id;
       setUserId(userId);
         // Fetch book data based on the bookId

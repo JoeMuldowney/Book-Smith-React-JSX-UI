@@ -42,7 +42,7 @@ const Toolbar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://csjoeportfolio.com/backendapi/users/memberlogout/');
+      await axios.post('https://csjoeportfolio.com/backendapi/users/memberlogout/');
       setLoggedIn(false);
     
       navigate('/store');

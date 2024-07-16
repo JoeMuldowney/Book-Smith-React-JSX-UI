@@ -32,7 +32,7 @@ function Views(){
 
     const fetchBooks = async () => {
         try{
-          const response = await axios.get(`http://csjoeportfolio.com/backendapi/books/category/${genre}/?page=${currentPage}`);
+          const response = await axios.get(`https://csjoeportfolio.com/backendapi/books/category/${genre}/?page=${currentPage}`);
           if (response.status !== 200) { // Check the status of the response
             throw new Error('Failed to fetch data');
           }

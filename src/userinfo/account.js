@@ -22,7 +22,7 @@ function Account(){
     useEffect(() => {
       const fetchAccountData = async () => {
         try{        
-            const response = await axios.get('http://csjoeportfolio.com/backendapi/users/viewaccount/');
+            const response = await axios.get('https://csjoeportfolio.com/backendapi/users/viewaccount/');
             const profileData = response.data;
             setFirstName(profileData.first_name);
             setLastName(profileData.last_name);
@@ -40,7 +40,7 @@ function Account(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();        
-      const response = await axios.patch('http://csjoeportfolio.com/backendapi/users/emailpatch/',
+      const response = await axios.patch('https://csjoeportfolio.com/backendapi/users/emailpatch/',
             {email}           
         ).then(response => {
           console.log("Email Updated")
