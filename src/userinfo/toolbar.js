@@ -13,7 +13,7 @@ const Toolbar = () => {
   useEffect(() => {
     const fetchLogStatus = async () => {
       try {
-        const response = await axios.get('http://csjoeportfolio.com/backendapi/users/logstatus/');
+        const response = await axios.get('https://csjoeportfolio.com/backendapi/users/logstatus/');
         if (response.status === 200) {
           setLoggedIn(true);
           // Set userId if logged in
