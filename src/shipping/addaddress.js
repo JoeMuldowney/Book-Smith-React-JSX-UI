@@ -32,7 +32,7 @@ const AddAddress = () => {
   const addAddress = (event) => {
     event.preventDefault();
     axios.post(
-      'http://18.218.222.138:8020/address',{      
+      'http://3.129.70.204:8020/address',{      
         "first_name": firstName,
         "last_name": lastName,
         "street": street,

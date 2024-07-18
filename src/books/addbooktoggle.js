@@ -23,7 +23,7 @@ const CartToggleButton = (props) => {
         setUserId(userId);
     
         // Second request, using the userId from the first request
-        const cartResponse = await axios.get('http://18.218.222.138:8020/getcartbook', {
+        const cartResponse = await axios.get('http://3.129.70.204:8020/getcartbook', {
           params: { id: id, user: userId }
         });
   
@@ -46,7 +46,7 @@ const CartToggleButton = (props) => {
 
   const addBook = () => {
     axios.post(
-      'http://18.218.222.138:8020/cart',{ 
+      'http://3.129.70.204:8020/cart',{ 
         "user_id": uid,     
         "book_id": bookId,
         "title": buyBook.title,
@@ -66,7 +66,7 @@ const CartToggleButton = (props) => {
 
   const deleteBook = () => {   
     axios.delete(
-      `http://18.218.222.138:8020/delete`,{
+      `http://3.129.70.204:8020/delete`,{
         params: { id: id, user: uid }
       })
      .then(response => {       

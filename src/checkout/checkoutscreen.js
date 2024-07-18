@@ -32,18 +32,18 @@ const getCheckOut = async () => {
   const userId = userResponse.data.user_id;
   setUserId(userId);
    
-  const shipresponse = await axios.get(`http://18.218.222.138:8020/shipping`, {
+  const shipresponse = await axios.get(`http://3.129.70.204:8020/shipping`, {
     params: { user: userId}})                 
     setAddress(shipresponse.data)         
     setLoading(false)
  
-  const billresponse = await axios.get(`http://18.218.222.138:8020/billing`,{
+  const billresponse = await axios.get(`http://3.129.70.204:8020/billing`,{
     params: { user: userId}})                 
     setCard(billresponse.data)
     setLoading(false)
 
    // Fetch book data based on the bookId
-   const cartresponse = await axios.get(`http://18.218.222.138:8020/checkout`,{
+   const cartresponse = await axios.get(`http://3.129.70.204:8020/checkout`,{
      params: { user: userId}})
      if(cartresponse.data.cart_items != null){             
      setBuyBook(cartresponse.data.cart_items)
@@ -75,7 +75,7 @@ const clearCart = async () => {
   const bookIds = buyBook.map(book => ({ book_id: book.book_id }));
   const response = await axios.post('https://csjoeportfolio.com/backendapi/users/boughtbooks/', bookIds, { withCredentials: true });
   if (response.status === 200) { // Check the status of the response
-    const deleteResponse = await axios.delete(`http://18.218.222.138:8020/deleteall`,{
+    const deleteResponse = await axios.delete(`http://3.129.70.204:8020/deleteall`,{
     params: { user: userId}})
     setBuyBook([]);
     setTotalItems();
