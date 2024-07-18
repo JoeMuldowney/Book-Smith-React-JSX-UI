@@ -32,7 +32,7 @@ const AddAddress = () => {
   const addAddress = (event) => {
     event.preventDefault();
     axios.post(
-      'https://joecsportfolio.com/go/address',{      
+      'https://joecsportfolio.com/address',{      
         "first_name": firstName,
         "last_name": lastName,
         "street": street,

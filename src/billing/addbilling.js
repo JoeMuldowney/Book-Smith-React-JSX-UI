@@ -37,7 +37,7 @@ const AddBilling = () => {
     try {    
 
      axios.post(
-      'https://joecsportfolio.com/go/addcard',
+      'https://joecsportfolio.com/addcard',
       {      
         "first_name": firstName,
         "last_name": lastName,

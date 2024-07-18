@@ -14,7 +14,7 @@ const BookUpdate = (props) => {
 
   const updateBookCart = () => {
     axios.post(
-      `https://joecsportfolio.com/go/cartupdate/${id}`,{     
+      `https://joecsportfolio.com/cartupdate/${id}`,{     
         "quantity": stockAmount,
         "format": buyBook.format,
         "purchase": buyBook.purchaseType,

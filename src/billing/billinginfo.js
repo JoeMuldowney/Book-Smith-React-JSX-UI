@@ -45,10 +45,10 @@ const [mainCard, setMainCard] = useState(
       const userId = userResponse.data.user_id;
       setUserId(userId);
         // Fetch book data based on the bookId
-      const resp = await axios.get(`https://joecsportfolio.com/go/billing`,{
+      const resp = await axios.get(`https://joecsportfolio.com/billing`,{
         params: { user: userId }
       })
-      const response = await axios.get(`https://joecsportfolio.com/go/allcard`,{
+      const response = await axios.get(`https://joecsportfolio.com/allcard`,{
         params: { user: userId }
       })
         if(response.data != null){
@@ -69,7 +69,7 @@ const [mainCard, setMainCard] = useState(
 
   const setCardClick = (id) => {          
          
-   axios.put(`https://joecsportfolio.com/go/updatecard`,{withCredentials: true},{
+   axios.put(`https://joecsportfolio.com/updatecard`,{withCredentials: true},{
     params: { user: userId, id: id}})
       .then(response => {        
       console.log("Card Changed")

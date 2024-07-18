@@ -23,7 +23,7 @@ const CartToggleButton = (props) => {
         setUserId(userId);
     
         // Second request, using the userId from the first request
-        const cartResponse = await axios.get('https://joecsportfolio.com/go/getcartbook', {
+        const cartResponse = await axios.get('https://joecsportfolio.com/getcartbook', {
           params: { id: id, user: userId }
         });
   
@@ -46,7 +46,7 @@ const CartToggleButton = (props) => {
 
   const addBook = () => {
     axios.post(
-      'https://joecsportfolio.com/go/cart',{ 
+      'https://joecsportfolio.com/cart',{ 
         "user_id": uid,     
         "book_id": bookId,
         "title": buyBook.title,
@@ -66,7 +66,7 @@ const CartToggleButton = (props) => {
 
   const deleteBook = () => {   
     axios.delete(
-      `https://joecsportfolio.com/go/delete`,{
+      `https://joecsportfolio.com/delete`,{
         params: { id: id, user: uid }
       })
      .then(response => {       
