@@ -12,8 +12,8 @@ const navigate = useNavigate();
 const cartClick = () => {
     navigate('/cart')
 }
-const bookdetailClick = (id) => {
-  navigate(`/details/${id}`);
+const bookdetailClick = (bookId) => {
+  navigate(`/details/${bookId}`);
 };  
 const[book, setBooks] = useState([
     {id:'',title:'',author:'',book:'' }
