@@ -37,7 +37,7 @@ const AddBilling = () => {
     try {    
 
      axios.post(
-      'https://3.129.70.204:8020/addcard',
+      'http://3.129.70.204/go/addcard',
       {      
         "first_name": firstName,
         "last_name": lastName,
