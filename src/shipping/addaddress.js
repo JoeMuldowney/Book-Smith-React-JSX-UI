@@ -32,7 +32,7 @@ const AddAddress = () => {
   const addAddress = (event) => {
     event.preventDefault();
     axios.post(
-      'http://3.129.70.204/go/address',{      
+      'https://joecsportfolio.com/go/address',{      
         "first_name": firstName,
         "last_name": lastName,
         "street": street,

@@ -21,7 +21,7 @@ const AddBilling = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get('http://csjoeportfolio.com/backendapi/users/logstatus/');
+        const response = await axios.get('https://csjoeportfolio.com/backendapi/users/logstatus/');
         if (response.status === 200) {          
           setUserId(response.data.user_id)          
         } 
@@ -37,7 +37,7 @@ const AddBilling = () => {
     try {    
 
      axios.post(
-      'http://3.129.70.204/go/addcard',
+      'https://joecsportfolio.com/go/addcard',
       {      
         "first_name": firstName,
         "last_name": lastName,

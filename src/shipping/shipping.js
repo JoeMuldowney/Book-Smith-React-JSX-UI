@@ -50,10 +50,10 @@ useEffect(() => {
     const userId = userResponse.data.user_id;
     setUserId(userId);
       // Fetch book data based on the bookId
-    const resp = await axios.get(`http://3.129.70.204/go/shipping`,{
+    const resp = await axios.get(`https://joecsportfolio.com/go/shipping`,{
       params: { user: userId }
     })
-    const response = await axios.get(`http://3.129.70.204/go/allshipping`,{
+    const response = await axios.get(`https://joecsportfolio.com/go/allshipping`,{
       params: { user: userId }
     })
     if (response.data != null){
@@ -71,7 +71,7 @@ useEffect(() => {
 }, []);
 
 const setAddressClick = (id) =>{      
-  axios.put(`https://3.129.70.204/go/updateshipping`,{withCredentials: true},{
+  axios.put(`https://joecsportfolio.com/go/updateshipping`,{withCredentials: true},{
     params: { user: userId, id: id}})
       .then(response => {        
           console.log("Address Changed")
