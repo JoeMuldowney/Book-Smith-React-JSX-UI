@@ -44,7 +44,7 @@ function NewMember(){
         e.preventDefault();       
         try{            
 
-            const res = await axios.post('https://joecsportfolio.com/go/membershipcard',{      
+            const res = await axios.post('https://joecsportfolio.com/membershipcard',{      
                   "first_name": payFirstName,
                   "last_name": payLastName,
                   "card_num": card_num,
