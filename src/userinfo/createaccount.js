@@ -26,7 +26,6 @@ function NewMember(){
     const [city, setCity] = React.useState('');
     const [state, setState] = React.useState('');
     const [zip_code, setZipCode] = React.useState('');
-    const [pay_default, setPayDefault] = React.useState(true);
     const [userId, setUserId] = React.useState()
 
     const handleSubmitNext = async (e) => {
@@ -54,7 +53,7 @@ function NewMember(){
                   "city": city,
                   "state": state,
                   "zip_code": zip_code,
-                  "pay_default": 1,
+                  "pay_default": true,
                    "user_id": userId
             })
             navigate("/store")   
