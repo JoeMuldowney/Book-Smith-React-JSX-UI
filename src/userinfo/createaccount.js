@@ -62,6 +62,26 @@ function NewMember(){
         }
     }
 
+    const handleShippingAddress = async (e) => {
+        e.preventDefault();       
+        try{            
+
+            const res = await axios.post('https://joecsportfolio.com/address',{      
+                  "first_name": payFirstName,
+                  "last_name": payLastName,
+                  "street": street,
+                  "city": city,
+                  "state": state,
+                  "zip_code": zip_code,
+                  "ship_default": true,
+                   "user_id": userId
+            })
+            navigate("/store")   
+        }catch (error) {
+            setError('payment not created');
+        }
+    }
+
     const handleCardNum = (e) => {
         let value = e.target.value.replace(/\D/g, '');
     
@@ -133,7 +153,11 @@ function NewMember(){
                         <button onClick={()=>{navigate("/home");}}>cancel</button>
                     </form>
                 ) : (
-                    <form onSubmit={handleSubmitPayment}>
+                    <form onSubmit={(e) => {
+                        e.preventDefault();
+                        handleSubmitPayment(e);
+                        handleShippingAddress(e);
+                    }}>
                         <div className='form-page'>
                             <div className="form-group">
                                 <label>First Name:</label>
