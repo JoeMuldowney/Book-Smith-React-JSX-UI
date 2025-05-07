@@ -54,7 +54,7 @@ function NewMember(){
                   "city": city,
                   "state": state,
                   "zip_code": zip_code,
-                  "pay_default": pay_default,
+                  "pay_default": 1,
                    "user_id": userId
             })
             navigate("/store")   
@@ -107,6 +107,7 @@ function NewMember(){
         <section className="text-overlay-membership">
                 <h1>Virtual Library Membership</h1>
                 <h5>Billing Information $17.85 Monthly Recurring Charge</h5>
+                <h5>Please do not enter an real information.  This a dummy application used for demonstartions</h5>
 
                 {!isFirstPartComplete ? (
                     <form onSubmit={handleSubmitNext}>

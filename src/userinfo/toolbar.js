@@ -62,7 +62,7 @@ const Toolbar = () => {
       <div className={`text-overlay-toolbar ${isOpen ? 'open' : ''}`}>
         <div className='menu'>
           <button onClick={storeClick}><GoHome /></button>
-          <button onClick={cartClick}><GoBook /></button>
+          <button onClick={cartClick} className={!loggedin ? 'disabled' : ''}><GoBook /></button>
           <button onClick={toggle}><GoPerson /></button>
         </div>
         {isOpen && (

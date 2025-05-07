@@ -16,6 +16,30 @@ const Sidebar = () => {
     const boughtBooksClick = () => {
         navigate('/boughtbooks')
     }
+
+      const [loggedin, setLoggedIn] = useState(false);      
+    
+      useEffect(() => {
+        const fetchLogStatus = async () => {
+          try {
+            const response = await axios.get('https://csjoeportfolio.com/backendapi/users/logstatus/');
+            if (response.status === 200) {
+              setLoggedIn(true);
+              // Set userId if logged in
+            } else {
+              setLoggedIn(false);
+             
+            }
+          } catch (error) {
+            setLoggedIn(false);
+           
+          }
+        };
+    
+        fetchLogStatus();
+      }, []);
+
+
       return (
         <div className='container-sidebar'>
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
@@ -34,8 +58,8 @@ const Sidebar = () => {
                     <div className="category">
                         <h2>Books</h2>
                         <ul>                            
-                            <li><a href="#" onClick={boughtBooksClick}>Purchases</a></li>
-                            <li><a href="#" onClick={savedBooksClick}>Saved</a></li>
+                            <li><a href="#" onClick={boughtBooksClick} className={!loggedin ? 'disabled' : ''}>Purchases</a></li>
+                            <li><a href="#" onClick={savedBooksClick} className={!loggedin ? 'disabled' : ''}>Saved</a></li>
                         </ul>
                     </div>
                 </>
