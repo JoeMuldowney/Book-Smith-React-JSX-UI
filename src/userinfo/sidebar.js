@@ -1,9 +1,13 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../index.css';
-import { useState } from 'react';
+
 import { GoMail  } from "react-icons/go";
 import {useNavigate } from 'react-router-dom';
 const Sidebar = () => {
+    axios.defaults.withCredentials = true;
+
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
 
