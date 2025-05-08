@@ -2,7 +2,7 @@
 FROM node:14-alpine
 
 # Set the working directory inside the container
-WORKDIR /frontendlibrary
+WORKDIR /libraryfrontend
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json .

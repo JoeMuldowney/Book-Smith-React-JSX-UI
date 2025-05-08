@@ -1,26 +1,47 @@
 pipeline {
     agent any
-    
+     tools{
+        nodejs '20.12.1'
+    }
+        environment {
+        DOCKERHUB_CREDENTIALS = '95d202ba-9223-45f8-8531-bfe1eb84c3d2'
+    }
     stages {
-        stage('Build') {
+        stage('Remove old container') {
             steps {
-                // Checkout source code
-                checkout scm
-                
-                // Build Docker image
-                sh 'docker build -t myapp .'
+                script {
+                    // Using "|| true" to prevent pipeline failure if container doesn't exist
+                    sh 'docker stop vlibraryfrontend || true'
+                    sh 'docker rm vlibraryfrontend || true'
+                    sh 'docker system prune -af'
+                }
             }
         }
-        stage('Deploy') {
+    
+        stage('dockerbuild') {
             steps {
-                // Save Docker image
-                sh 'docker save myapp -o myapp.tar'
-                
-                // Load Docker image
-                sh 'docker load -i myapp.tar'
-                
-                // Run Docker container
-                sh 'docker run -d -p 3000:3000 myapp'
+                sh 'docker build -t virtual-library-frontend .'
+            }
+        }
+         stage('Push to Docker Hub') {
+            steps {
+
+            withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')])
+           {
+                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+
+                    // Tag Docker image
+                    sh 'docker tag virtual-library-frontend:latest joemuldowney/virtual_library_react'
+
+                    // Push Docker image to Docker Hub
+                    sh 'docker push joemuldowney/virtual_library_react'
+           }
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                sh 'docker run -d -p 3000:3000 --name vlibraryfrontend joemuldowney/virtual_library_react'
             }
         }
     }
