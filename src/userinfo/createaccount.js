@@ -25,7 +25,7 @@ function NewMember(){
     const [street, setStreet] = React.useState('');
     const [city, setCity] = React.useState('');
     const [state, setState] = React.useState('');
-    const [zip_code, setZipCode] = React.useState(0);
+    const [zip_code, setZipCode] = React.useState('');
     const [userId, setUserId] = React.useState()
 
     const handleSubmitNext = async (e) => {
