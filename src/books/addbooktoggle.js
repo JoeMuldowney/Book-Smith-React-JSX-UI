@@ -3,16 +3,40 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BookUpdate from './bookupdate';
 const CartToggleButton = (props) => {
+
+  axios.defaults.withCredentials = true;
+  const [loggedin, setLoggedIn] = useState(false);
   const { buyBook} = props;
   const {id} = useParams();
   const [isAdded, setIsAdded] = useState(false);
-  //const[userId, setUserId] = useState()
+  
   const [error, setError] = React.useState('')
+  
   //convert to integers
   const bookId = parseInt(id, 10);
   const price = parseFloat(buyBook.cost,10)
   const amount = parseInt(buyBook.quantity)
   const[uid, setUserId] = React.useState(null)
+
+    useEffect(() => {
+    const fetchLogStatus = async () => {
+      try {
+        const response = await axios.get('https://csjoeportfolio.com/backendapi/users/logstatus/');
+        if (response.status === 200) {
+          setLoggedIn(true);
+          // Set userId if logged in
+        } else {
+          setLoggedIn(false);
+         
+        }
+      } catch (error) {
+        setLoggedIn(false);
+       
+      }
+    };
+
+    fetchLogStatus();
+  }, []);
  
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +114,7 @@ const CartToggleButton = (props) => {
   
   return (
     <div>
-    <button onClick={handleCartToggle} style={{ fontSize: '12px' }}>
+    <button onClick={handleCartToggle} style={{ fontSize: '12px' }} className={!loggedin ? 'disabled' : ''}>
       {isAdded ? 'Remove from Cart' : 'Add to Cart'}
     </button>
     {isAdded && <BookUpdate buyBook={buyBook} userId={uid} />}
