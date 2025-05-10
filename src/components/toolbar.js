@@ -1,0 +1,93 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Navbar, Nav, Button, Container, Offcanvas, NavDropdown } from 'react-bootstrap';
+
+
+function Toolbar() {
+  const [showMenu, setShowMenu] = useState(false);
+  const [loggedin, setLoggedIn] = useState(false);
+  
+  axios.defaults.withCredentials = true;
+
+  // Session check on mount
+  useEffect(() => {
+    const fetchLogStatus = async () => {
+      try {
+        const response = await axios.get('https://csjoeportfolio.com/backendapi/users/logstatus/');
+          setLoggedIn(response.status === 200);
+      } catch (error) {
+        setLoggedIn(false);
+      }
+    };
+
+    fetchLogStatus();
+  }, []);
+
+  const toggleMenu = () => setShowMenu(!showMenu);
+
+
+  const handleLogout = async () => {
+    try {
+      await axios.post('https://csjoeportfolio.com/backendapi/users/memberlogout/');
+      setLoggedIn(false);
+      window.location.href = '/store'; // or use useNavigate if using React Router
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
+  return (
+    <>
+      <Navbar bg="dark" variant="dark" fixed="top">
+        <Container>
+          <Button
+            variant="outline-light"
+            onClick={toggleMenu}
+            className="me-2"
+            style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+          >
+            <i className="bi bi-list"></i>
+          </Button>
+          <Navbar.Brand as={Link} to="/">Book Smith</Navbar.Brand>
+          <Nav className="ms-auto">
+                        <Nav.Link as={Link} to="/store">
+              <Button variant="outline-light">Home</Button>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/cart">
+              <Button variant="outline-light">Cart</Button>
+            </Nav.Link>
+            <NavDropdown title="Account" menuVariant="dark">
+              <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/settings">Settings</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/billing">Billing</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/shipping">Shipping</NavDropdown.Item>
+              <NavDropdown.Divider />
+              {loggedin ? (
+                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              ) : (
+                <NavDropdown.Item as={Link} to="/">Login</NavDropdown.Item>
+              )}
+            </NavDropdown>
+
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <Offcanvas show={showMenu} onHide={toggleMenu} placement="start">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Menu</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <Nav className="flex-column">
+            <Nav.Link as={Link} to="/purchase">Purchase</Nav.Link>
+            <Nav.Link as={Link} to="/saved">Saved</Nav.Link>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
+          </Nav>
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
+  );
+}
+
+export default Toolbar;
