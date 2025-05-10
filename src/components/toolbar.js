@@ -59,9 +59,8 @@ function Toolbar() {
             </Nav.Link>
             <NavDropdown title="Account" menuVariant="dark">
               <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/settings">Settings</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/billing">Billing</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/shipping">Shipping</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/cards">Billing</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/ship">Shipping</NavDropdown.Item>
               <NavDropdown.Divider />
               {loggedin ? (
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
@@ -80,8 +79,8 @@ function Toolbar() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">
-            <Nav.Link as={Link} to="/purchase">Purchase</Nav.Link>
-            <Nav.Link as={Link} to="/saved">Saved</Nav.Link>
+            <Nav.Link as={Link} to="/purchase">Purchase History</Nav.Link>
+            <Nav.Link as={Link} to="/saved">Saved Books</Nav.Link>
             <Nav.Link as={Link} to="/about">About</Nav.Link>
           </Nav>
         </Offcanvas.Body>
