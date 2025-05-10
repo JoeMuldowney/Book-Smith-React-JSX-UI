@@ -34,6 +34,7 @@ module.exports = {
     static: './build',
     port: 3000,
     historyApiFallback: true, // important for react-router-dom
+    allowedHosts: ['csjoeportfolio.com', 'localhost']
   },
   mode: 'development',
 };
