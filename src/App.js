@@ -11,6 +11,8 @@ import Shipping from './components/shipping/shipping';
 import BillInfo from './components/billing/info';
 import AddAddress from './components/shipping/addshipping';
 import CheckOut from './components/cart';
+import History from './components/history';
+import Saved from './components/saved';
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
         <Route path="/cards" element={<BillInfo/>} />
         <Route path="/ship" element={<Shipping/>} />
         <Route path="/address" element={<AddAddress/>} />
+        <Route path="/history" element={<History/>} />
+        <Route path="/saved" element={<Saved/>} />
       </Routes>
     </Router>
   );

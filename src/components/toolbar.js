@@ -127,7 +127,7 @@ function Toolbar() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">
-            <Nav.Link as={Link} to="/purchase">Purchase History</Nav.Link>
+            <Nav.Link as={Link} to="/history">Purchase History</Nav.Link>
             <Nav.Link as={Link} to="/saved">Saved Books</Nav.Link>
             <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
