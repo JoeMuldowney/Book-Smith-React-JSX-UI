@@ -31,7 +31,7 @@ function Toolbar() {
     try {
       await axios.post('https://csjoeportfolio.com/backendapi/users/memberlogout/');
       setLoggedIn(false);
-      window.location.href = '/store'; // or use useNavigate if using React Router
+      window.location.href = '/'; // or use useNavigate if using React Router
     } catch (error) {
       console.error('Logout failed:', error);
     }
@@ -54,20 +54,68 @@ function Toolbar() {
                         <Nav.Link as={Link} to="/store">
               <Button variant="outline-light">Home</Button>
             </Nav.Link>
-            <Nav.Link as={Link} to="/cart">
-              <Button variant="outline-light">Cart</Button>
-            </Nav.Link>
-            <NavDropdown title="Account" menuVariant="dark">
-              <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/cards">Billing</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/ship">Shipping</NavDropdown.Item>
-              <NavDropdown.Divider />
-              {loggedin ? (
-                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-              ) : (
-                <NavDropdown.Item as={Link} to="/">Login</NavDropdown.Item>
-              )}
-            </NavDropdown>
+<Nav.Link
+  as={Link}
+  to={loggedin ? "/cart" : "/"}
+  onClick={(e) => {
+    if (!loggedin) {
+      e.preventDefault();
+      alert("Please log in to view your cart.");
+    }
+  }}
+>
+  <Button variant="outline-light" disabled={!loggedin}>
+    Cart
+  </Button>
+</Nav.Link>
+<NavDropdown title="Account" menuVariant="dark">
+  <NavDropdown.Item
+    as={Link}
+    to={loggedin ? "/profile" : "/"}
+    onClick={(e) => {
+      if (!loggedin) {
+        e.preventDefault();
+        alert("Please log in to view your profile.");
+      }
+    }}
+  >
+    Profile
+  </NavDropdown.Item>
+
+  <NavDropdown.Item
+    as={Link}
+    to={loggedin ? "/cards" : "/"}
+    onClick={(e) => {
+      if (!loggedin) {
+        e.preventDefault();
+        alert("Please log in to access billing.");
+      }
+    }}
+  >
+    Billing
+  </NavDropdown.Item>
+
+  <NavDropdown.Item
+    as={Link}
+    to={loggedin ? "/ship" : "/"}
+    onClick={(e) => {
+      if (!loggedin) {
+        e.preventDefault();
+        alert("Please log in to access shipping info.");
+      }
+    }}
+  >
+    Shipping
+  </NavDropdown.Item>
+
+  <NavDropdown.Divider />
+  {loggedin ? (
+    <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+  ) : (
+    <NavDropdown.Item as={Link} to="/">Login</NavDropdown.Item>
+  )}
+</NavDropdown>
+
 
           </Nav>
         </Container>

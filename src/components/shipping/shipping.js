@@ -32,7 +32,7 @@ const Shipping = () => {
     ship_default: false
   });
 
-  const back = () => navigate(-1);
+  const back = () => navigate('/store', { state: { userId } });
   const addAddress = () => navigate('/address');
 
   useEffect(() => {

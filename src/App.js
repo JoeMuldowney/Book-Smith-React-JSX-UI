@@ -10,7 +10,8 @@ import Billing from './components/billing/billing';
 import Shipping from './components/shipping/shipping';
 import BillInfo from './components/billing/info';
 import AddAddress from './components/shipping/addshipping';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import CheckOut from './components/cart';
+
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/store" element={<Store />} />
+        <Route path="/cart" element={<CheckOut />} />
         <Route path="/category/:genre"  element={<Category />} />
         <Route path="/details/:id" element={<Detail />} />
         <Route path="/profile" element={<Profile />} />

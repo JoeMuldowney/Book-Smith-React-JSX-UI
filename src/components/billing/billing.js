@@ -122,7 +122,7 @@ const Billing = () => {
 
         <div className="d-flex gap-3">
           <button type="submit" className="btn btn-primary">Save</button>
-          <button type="button" className="btn btn-secondary" onClick={() => navigate('/billing')}>Cancel</button>
+          <button type="button" className="btn btn-secondary" onClick={() => navigate('/cards')}>Cancel</button>
         </div>
       </form>
     </div>

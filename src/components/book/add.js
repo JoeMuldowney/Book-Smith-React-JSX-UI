@@ -53,7 +53,7 @@ const Add = (props) => {
           setIsAdded(true);
         }
       } catch (error) {
-        setError('Error getting data');
+        setError('Not logged in');
       }
     };
 

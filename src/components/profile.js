@@ -30,7 +30,7 @@ function Profile() {
         setView(profileData.publicProfile ? 'Yes' : 'No');
       } catch (error) {
         console.error('Error fetching profile data:', error);
-        setError('Error fetching profile data');
+        setError('No profile data found.');
       }
     };
     fetchProfileData();

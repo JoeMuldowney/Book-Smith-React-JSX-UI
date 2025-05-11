@@ -10,7 +10,7 @@ const BillInfo = () => {
   const [error, setError] = React.useState(null);
   const [userId, setUserId] = React.useState(null);
 
-  const back = () => navigate(-1);
+  const back = () => navigate('/store', { state: { userId } });
 
   const addCardClick = () => {
     navigate('/bill', { state: { userId } });

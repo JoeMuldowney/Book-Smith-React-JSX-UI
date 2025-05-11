@@ -38,8 +38,8 @@ const AddAddress = () => {
       street: street,
       city: city,
       state: state,
-      zip_code: parseInt(zip_code, 10),
-      user_id: userId,
+      zip_code: zip_code,
+      user_id: userId
     })
       .then(() => {
         console.log("Address Added!");
@@ -88,7 +88,7 @@ const AddAddress = () => {
 
         <div className="d-flex justify-content-between">
           <button type="submit" className="btn btn-primary">Save</button>
-          <button type="button" className="btn btn-secondary" onClick={() => navigate('/shipping')}>Cancel</button>
+          <button type="button" className="btn btn-secondary" onClick={() => navigate('/ship')}>Cancel</button>
         </div>
       </form>
     </div>
