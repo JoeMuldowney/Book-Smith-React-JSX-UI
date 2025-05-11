@@ -84,16 +84,15 @@ function Register() {
         ship_default: true,
         user_id: userId
       });
-
-
-        alert('Registration Successful!');
-        navigate('/login');
+        
+        navigate('/');
       } catch (err) {
         console.error(err);
         setError('Registration failed. Please try again.');
       }
       setLoading(false);
-    }  
+    }
+      
   };
 
   return (
@@ -141,7 +140,7 @@ function Register() {
 
                 <Form.Group controlId="formExpiryDate" className="mb-3">
                   <Form.Label>Expiry Date (MM/YY)</Form.Label>
-                  <Form.Control type="text" placeholder="MM/YY" name="expiryDate" value={formData.expiryDate} onChange={handleChange} required />
+                  <Form.Control type="text" placeholder="MM/YYYY" name="expiryDate" value={formData.expiryDate} onChange={handleChange} required />
                 </Form.Group>
 
                 <Form.Group controlId="formStreet" className="mb-3">

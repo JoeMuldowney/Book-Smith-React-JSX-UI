@@ -83,6 +83,7 @@ const CheckOut = () => {
         setBuyBook([]);
         setTotalItems();
         setTotalCost();
+        navigate('/history');
       }
     } catch (error) {
       console.error('Error clearing cart', error);
