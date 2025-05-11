@@ -89,15 +89,6 @@ const CheckOut = () => {
       setError('Error clearing cart');
     }
   };
-
-  if (loading) {
-    return <Spinner animation="border" />;
-  }
-
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
-
   return (
     <Container className="mt-5 pt-5">
         <Toolbar />
@@ -146,8 +137,8 @@ const CheckOut = () => {
           <div className="d-flex flex-column align-items-center">
             <Button variant="secondary" className="mb-3" onClick={() => navigate("/store")}>Return</Button>
             <Button variant="success" className="mb-3" onClick={clearCart}>Purchase</Button>
-            <Button variant="warning" className="mb-3" onClick={() => navigate("/shipping")}>New Address</Button>
-            <Button variant="info" onClick={() => navigate("/billing")}>New Card</Button>
+            <Button variant="warning" className="mb-3" onClick={() => navigate("/ship")}>New Address</Button>
+            <Button variant="info" onClick={() => navigate("/cards")}>New Card</Button>
           </div>
         </Col>
       </Row>
