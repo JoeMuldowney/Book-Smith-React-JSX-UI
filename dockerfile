@@ -1,20 +1,20 @@
-# Use a Node.js base image
-FROM node:20-alpine
+# --- Build Stage ---
+FROM node:20-alpine AS build
 
-# Set the working directory inside the container
-WORKDIR /dockerapptesting
+WORKDIR /react_app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json .
+COPY package*.json ./
 
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the application files to the working directory
 COPY . .
+RUN npm run build
 
-# Expose port 3000
-EXPOSE 3000
 
-# Set the command to run the React app
-CMD ["npm", "start"]
+# --- Production Stage ---
+FROM nginx:alpine
+
+COPY --from=build /react_app/build /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
