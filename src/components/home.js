@@ -31,6 +31,8 @@ function Home() {
       <Row className="w-100">
         <Col xs={12} md={6} lg={4} className="mx-auto p-4 shadow rounded bg-white">
           <h3 className="text-center mb-4">Login</h3>
+          <h4 className="text-center mb-4">Username: Guestacct123</h4>
+          <h4 className="text-center mb-4">Passowrd: Guestpass123</h4>
           {showAlert && <Alert variant="danger">Invalid credentials</Alert>}
 
           <Form onSubmit={handleLogin}>
